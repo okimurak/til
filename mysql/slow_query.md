@@ -50,6 +50,7 @@ SELECT P.id
   LEFT JOIN information_schema.INNODB_LOCKS BL
     ON BL.lock_id = LW.blocking_lock_id
 ORDER BY T.trx_started, T.trx_mysql_thread_id, BT.trx_started, BT.trx_mysql_thread_id
+
 ```
 
 # 参考
