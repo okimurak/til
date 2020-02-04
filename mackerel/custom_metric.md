@@ -44,12 +44,13 @@ commandによるプログラムの出力形式
 
 ## シェル芸でなんとかできないかな
 
-Valueの形式守ればいいみたい
+Valueの形式守れって標準出力すればいいみたい
 
 ```
-print(<metrics>)
+echo <metrics>
 ```
 
 ## 参考
 
 - [ホストのカスタムメトリックを投稿する - Mackerel ヘルプ](https://mackerel.io/ja/docs/entry/advanced/custom-metrics)
+- [mysql へのSelectクエリの結果をMackerelに投稿したい - koudenpaのブログ](https://koudenpa.hatenablog.com/entry/2018/04/17/013138)
