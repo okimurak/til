@@ -230,7 +230,11 @@
     # aws_instance.sandbox[0]:
     resource "aws_instance" "sandbox" {
         ami                          = "ami-785c491f"
+<<<<<<< HEAD
         arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b"
+=======
+        arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b"
+>>>>>>> ac74985... Move study memo to til frmo Notion
         associate_public_ip_address  = true
         availability_zone            = "ap-northeast-1a"
         cpu_core_count               = 1
@@ -302,7 +306,11 @@ sandbox から testboxに名称を変えると
       # aws_instance.sandbox[0] will be updated in-place
       ~ resource "aws_instance" "sandbox" {
             ami                          = "ami-785c491f"
+<<<<<<< HEAD
             arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b"
+=======
+            arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b"
+>>>>>>> ac74985... Move study memo to til frmo Notion
             associate_public_ip_address  = true
             availability_zone            = "ap-northeast-1a"
             cpu_core_count               = 1
@@ -369,7 +377,11 @@ sandbox から testboxに名称を変えると
       # aws_instance.sandbox[0] will be updated in-place
       ~ resource "aws_instance" "sandbox" {
             ami                          = "ami-785c491f"
+<<<<<<< HEAD
             arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b"
+=======
+            arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b"
+>>>>>>> ac74985... Move study memo to til frmo Notion
             associate_public_ip_address  = true
             availability_zone            = "ap-northeast-1a"
             cpu_core_count               = 1
@@ -455,7 +467,11 @@ applyと似た感じ。diffみたいに－で表現されてるね
       # aws_instance.sandbox[0] will be destroyed
       - resource "aws_instance" "sandbox" {
           - ami                          = "ami-785c491f" -> null
+<<<<<<< HEAD
           - arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b" -> null
+=======
+          - arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b" -> null
+>>>>>>> ac74985... Move study memo to til frmo Notion
           - associate_public_ip_address  = true -> null
           - availability_zone            = "ap-northeast-1a" -> null
           - cpu_core_count               = 1 -> null
@@ -927,4 +943,8 @@ TF_LOG = DEBUG terraform apply
 
 - [VSCodeでのTerraformはじめ - Qiita](https://qiita.com/garakutayama/items/0cdf43816bde2378f4f9)
 
+<<<<<<< HEAD
 - [Terraform入門資料\(v0\.12\.0対応\) ~基本知識から設計や運用、知っておくべきtipsまで~ \- Qiita](https://qiita.com/fukubaka0825/items/68506b1e6644404d6cc0)
+=======
+- [Terraform入門資料\(v0\.12\.0対応\) ~基本知識から設計や運用、知っておくべきtipsまで~ \- Qiita](https://qiita.com/fukubaka0825/items/68506b1e6644404d6cc0)
+>>>>>>> ac74985... Move study memo to til frmo Notion
