@@ -23,3 +23,13 @@ AND条件はそのまま列挙すればよく、OR条件だけは、`-o`でつ�
 ```
 find . -path "hogehoge" -o -path "fugaduga"
 ```
+
+## 正規表現を使いたい
+
+面倒だが、オプションをつける
+
+    find . -type f -regextype posix-basic -regex ".*.jar"
+
+## 参考
+
+- [正規表現に合致するファイル名をfindする方法 - grep Tips *](https://www.greptips.com/posts/301/)
