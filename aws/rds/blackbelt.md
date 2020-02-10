@@ -107,6 +107,11 @@ TDEによる暗号化は Oracle , SQL Server (Enterprise Edition) のみ
 
 ## Aurora
 
+# RDS Aurora
+
+## DBエンジン
+
+### Aurora
 以下相当
  - MySQL
  - PostGreSQL
@@ -171,5 +176,9 @@ SQL Server
 Oracle
 
 ## 参考
+<<<<<<< HEAD
 - [20180425 AWS Black Belt Online Seminar Amazon Relational Database Service](https://www.slideshare.net/AmazonWebServicesJapan/20180425-aws-black-belt-online-seminar-amazon-relational-database-service-amazon-rds-96509889)
 - [【AWS Black Belt Online Seminar】Amazon Aurora MySQL - YouTube](https://www.youtube.com/watch?v=VerVNchaqVY)
+=======
+- [【AWS Black Belt Online Seminar】Amazon Aurora MySQL \- YouTube](https://www.youtube.com/watch?v=VerVNchaqVY)
+>>>>>>> 784982f... Add AWS blackbelt for Aurora
