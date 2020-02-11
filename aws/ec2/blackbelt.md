@@ -246,3 +246,4 @@ MinCapacity, MaxXapacityのいずれか、あるいは両方を指定
 - [20190305 AWS Black Belt Online Seminar Amazon EC2](https://www.slideshare.net/AmazonWebServicesJapan/20190305-aws-black-belt-online-seminar-amazon-ec2)
 - [【AWS Black Belt Online Seminar】Amazon EC2 Auto Scaling and AWS Auto Scaling - YouTube](https://www.youtube.com/watch?v=o01IOnVvRxM&t=11s)
 - [20191002 AWS Black Belt Online Seminar Amazon EC2 Auto Scaling and AW…](https://www.slideshare.net/AmazonWebServicesJapan/20191002-aws-black-belt-online-seminar-amazon-ec2-auto-scaling-and-aws-auto-scaling-178995835)
+```

@@ -27,6 +27,13 @@ IAはアクセスが頻繁ではにデータ用
 PUT, Post Object, Initiate Multipart Upload APIを使う`x-amz-strage-class`リクエストヘッダーを追加して、ストレージクラスを指定する。指定しないと、STANDARDになる
 
 [Amazon S3 ストレージクラス - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/storage-class-intro.html)
+- スタンダード ... 複数AZにデータを複製
+- スタンダードIA
+- INTELLIGENT_TIERING
+- ONEZONE_ID ... 1つのAZに格納。大災害ではサヨウナラ
+- S3 Glacier ... 安価なストレージ。取り出しに時間かかる
+- S3 Glacier Deep Achive ... Glacierよりも安価。取り出しにとても時間かかる
+- 低冗長化ストレージ(RRS)
 
 ## S3の操作
 しらないのだけ
@@ -84,3 +91,4 @@ Write Once Read Many（Object Lock機能）
 - CSE (Client Side Encryption) ... クライアント側で行う暗号化
 - SSE-S3 ... S3側で行う暗号化。キー管理もS3. AWS-256を使用している
 - SSE-C ... S3側で行う暗号化。キー管理はユーザ(自分で準備する必要ある）
+バッチオペレーションでオブジェクトに対するAPIアクションを一括実行できる
