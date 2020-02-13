@@ -5,7 +5,7 @@
 
 ```
 [plugin.metrics.vmstat]
-command = ["実行コマンド"]
+command = ["実行コマンド"] # 配列形式にするとシェルを介さず、文字列だとシェルを介する。ややこしいので配列形式推奨
 user = "SOME_USER_NAME" # optional
 custom_identifier = "SOME_IDENTIFIER" # optional
 include_pattern = 'cpu' # optional

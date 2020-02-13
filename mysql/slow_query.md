@@ -28,7 +28,28 @@ slow_query_log_file = /path/to/output/logfile.log
 select * from mysql.slow_log;
 
 |start_time|user_host|query_time|lock_time|rows_sent|rows_examined|db|last_insert_id|insert_id|server_id|sql_text|
+```
 
+## 便利なSQL
+```
+SELECT P.id
+      , P.host, P.user, P.db
+      , T.trx_started, T.trx_state, T.trx_wait_started
+      , P.command, P.time, P.state, P.info AS query
+      , BT.trx_mysql_thread_id AS blocking_thread_id
+      , BT.trx_started AS blocking_trx_started
+      , BT.trx_query AS blocking_query
+      , BL.lock_table, BL.lock_mode
+  FROM information_schema.INNODB_TRX T
+  JOIN information_schema.PROCESSLIST P
+    ON P.id = T.trx_mysql_thread_id
+  LEFT JOIN information_schema.INNODB_LOCK_WAITS LW
+    ON LW.requesting_trx_id = T.trx_id
+  LEFT JOIN information_schema.INNODB_TRX BT
+    ON BT.trx_id = LW.blocking_trx_id
+  LEFT JOIN information_schema.INNODB_LOCKS BL
+    ON BL.lock_id = LW.blocking_lock_id
+ORDER BY T.trx_started, T.trx_mysql_thread_id, BT.trx_started, BT.trx_mysql_thread_id
 ```
 
 # 参考
