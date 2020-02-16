@@ -1,4 +1,4 @@
-# cronによるタスクスケジューリング
+# CloudWatchEventにおけるcronによるタスクスケジューリング
 
 CloudWatchEventにはタスクスケジュールの機能があり、cron式が使える
 
