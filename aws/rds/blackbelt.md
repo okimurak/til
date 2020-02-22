@@ -1,8 +1,112 @@
-# RDS Aurora
+# RDS
+トランザクションが必要な業務データベースに使う
 
-## DBエンジン
+## 制限
+- Oracleの場合
+  - 11g, 12cのみ
+  - キャパシティの上限
+  - OS, FileSystem へのアクセス不可, AWS CLIやプロシージャで代替
+  - ALTER SYSTEM, ALTER DATABASE不可
+  - IP固定不可
+  - RAC, ASM, DataGuard, RMANは使えない
+  - 個別パッチは適用不可
 
-### Aurora
+許容できない場合は、on EC2かオンプレミスで構築
+
+## Read Replica
+
+- 5台まで (Auroraは15台まで)増設可能
+- マルチAZとの併用、クロスリージョンもOK
+- RRはDBインスタンスにも昇格可能
+
+- DMSによってOracle SQL Serverも実現可能
+
+## Scale Up
+
+インスタンスタイプ変更はコンソール or APIから可能。再起動必要。(Multi AZで軽減可)
+
+## ストレージタイプ
+
+- SSD
+- プロビジョン度IOPS
+- Magnestic(HDD)
+  - 下位互換としてサポート
+
+## Backup
+
+- 自動バックアップ、Transaction Log, 自動スナップショットをS3に保存
+  - 自動スナップショットはインスタンス削除時に削除される
+
+- スナップショット
+  - 25日分
+  - 手動スナップショットは任意の時間に可能
+
+- リストア
+  - Point-in-Timeリカバリ
+    - 5分以上前の状態のDBインスタンスを作成可能
+
+- Endpointのリネームも可能
+  - DNSのフラッシュに依存する(10分ほど時間かかる)
+  - 名前の重複ができない
+  - クライアント側のDNSキャッシュｎTTLにも依存(30s未満推奨)
+  - CLoudwatchのメトリクス名、EventsのIdentifier
+
+ーPercona Xtrabackupを使ってMySQL平衡が可能(S3経由)
+
+## 設定変更
+
+- Parameter group
+- Option group
+
+## メンテナンスウィンドウ
+
+メンテナンス（OSなどのアップデート）に必要な時間を確保できる。
+バックアップウィンドウの後に設定すると良い、無効化はマイナーバージョン以外不可
+
+イベント通知を監視に組み込んでいくことをお勧め
+マルチAZ配置にしておくとダウンタイム軽減
+
+## Metrics
+
+- 60sごと
+
+- 拡張メトリクス
+  - OSメトリクス
+  - 取得間隔の修正(1~60sで取得)
+
+## Event Suvacription
+
+CloudWatchEvent経由でSNSに通知
+
+## Log
+APIかコンソールから表示、ダウンロード
+
+## Crypt
+
+暗号化方式はDBエンジンによって異なる
+
+TDEによる暗号化は Oracle , SQL Server (Enterprise Edition) のみ
+
+## Engine
+
+- Mysql 5.5 ~ 5.7
+  - キャッシュウォーミング
+- Oracle 11g, 12c
+  - LicenceでSE1, SE2
+  - Golden Gate使える
+- SQL Server 2008 ~ 2017
+- Postgress 9.3 ~ 11.3
+  - 拡張モジュールが使える
+- MariaDB
+
+## 料金
+1時間単位の課金, データ転送量
+
+## 停止時間
+7日まで停止可能、7日後に起動される。シングルAZのみ
+
+## Aurora
+
 以下相当
  - MySQL
  - PostGreSQL
@@ -67,4 +171,5 @@ SQL Server
 Oracle
 
 ## 参考
-- [【AWS Black Belt Online Seminar】Amazon Aurora MySQL \- YouTube](https://www.youtube.com/watch?v=VerVNchaqVY)
+- [20180425 AWS Black Belt Online Seminar Amazon Relational Database Service](https://www.slideshare.net/AmazonWebServicesJapan/20180425-aws-black-belt-online-seminar-amazon-relational-database-service-amazon-rds-96509889)
+- [【AWS Black Belt Online Seminar】Amazon Aurora MySQL - YouTube](https://www.youtube.com/watch?v=VerVNchaqVY)
