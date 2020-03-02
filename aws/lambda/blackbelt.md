@@ -559,3 +559,7 @@ webに事例有るので見てね
 - [【AWS Black Belt Online Seminar】AWS Lambda Part4 - YouTube](https://www.youtube.com/watch?v=AOx5iNmxOC8)
 - [20190402 AWS Black Belt Online Seminar Let's Dive Deep into AWS Lambd…](https://www.slideshare.net/AmazonWebServicesJapan/20190402-aws-black-belt-online-seminar-lets-dive-deep-into-aws-lambda-part1-part2/)
 - [20190813 AWS Black Belt Online Seminar 実践的 Serverless セキュリティプラクティス](https://www.slideshare.net/AmazonWebServicesJapan/20190813-aws-black-belt-online-seminar-serverless)
+## Reference
+- [【AWS Black Belt Online Seminar】 AWS Lambda Part1 - YouTube](https://www.youtube.com/watch?v=QvPgjEwgiew&list=PLzWGOASvSx6FIwIC2X1nObr1KcMCBBlqY&index=18&t=0s)
+- [20190402 AWS Black Belt Online Seminar Let's Dive Deep into AWS Lambd…](https://www.slideshare.net/AmazonWebServicesJapan/20190402-aws-black-belt-online-seminar-lets-dive-deep-into-aws-lambda-part1-part2/)
+- [20190813 AWS Black Belt Online Seminar 実践的 Serverless セキュリティプラクティス](https://www.slideshare.net/AmazonWebServicesJapan/20190813-aws-black-belt-online-seminar-serverless)
