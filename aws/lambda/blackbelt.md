@@ -119,6 +119,7 @@ Projected peak concurrent exexutinos * (memory in GB / 3GB)
 オンプレミスに有るリソースへのアクセスはDirect Connect
 
 ENI作成に10~60秒
+- 2019/09/03のアップデートで関数作成時かVPC設定有効化時、ENIを作成しておけるようになった（90秒くらいかかる）
 
 ## ロール
 
@@ -405,6 +406,8 @@ Fatでのモノリシックな関数にナラないようにする
   - VPC外リソースとしてアクセスできる
   - RDBではない、NoSQLなのでRDBの常識は忘れて
     - [【イチから理解するサーバーレスアプリ開発】 サーバーレスアプリケーション向きの DB 設計ベストプラクティス 20190905版](https://www.slideshare.net/AmazonWebServicesJapan/db-20190905)
+    - [DynamoDB を使用した設計とアーキテクチャの設計に関するベストプラクティス - Amazon DynamoDB](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/best-practices.html)
+    - [AWS Black Belt Online Seminar 2018 Amazon DynamoDB Advanced Design Pa…](https://www.slideshare.net/AmazonWebServicesJapan/aws-black-belt-online-seminar-2018-amazon-dynamodb-advanced-design-pattern)
 
 - RDB使う場合は非同期にする
   - DynamoDB Streams + Lambda
@@ -480,7 +483,7 @@ Micro VMはFirecrackerを使って生成  ... AWSが開発しているOSSで、�
 - 非同期呼び出し
   - SQS(AWS Lambdaが管理) -> pollerプロセス -> Lambda Invoke service
 
-### Lambda関数の Audit
+### Lambda関数の Audit(監査)
 
 - CloudTrail
   - 実行監査、リスク監査を追跡
