@@ -84,9 +84,15 @@ BYTEDICT|BOOL以外|列値で辞書を作成。値の種類が少ない場合に
 DELT/DELTA32K|数値|連続する数値を差分で表現して圧縮
 LZO|varchar向け|長い文字列の圧縮
 MOSTLY(8|16|32)|数値|数値型に対し実際の数値範囲が小さいときに有効
+<<<<<<< HEAD
 RUNLENGTH|数値, 文字列, 日付|列がソートされている等、同じ値が繰り返される場合
 TEXT255 32K|VARCHAR|同じ単語が頻出する場合
 Zstandard|数値, 文字列, 日付|長さが様々な文字列を保存する場合に使う
+=======
+RUNLENGTH|ALL|列がソートされている等、同じ値が繰り返される場合
+TEXT255 32K|文字列|同じ単語が頻出する場合
+Zstandard|数値、文字列、日付|長さが様々な文字列を保存する場合に使う
+>>>>>>> 1a82ba5... Add ELB and Redshift
 AZ64|数値,日付|デフォルトになった
 
 [圧縮エンコード - Amazon Redshift](https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/c_Compression_encodings.html)
