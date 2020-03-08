@@ -91,4 +91,3 @@ Write Once Read Many（Object Lock機能）
 - CSE (Client Side Encryption) ... クライアント側で行う暗号化
 - SSE-S3 ... S3側で行う暗号化。キー管理もS3. AWS-256を使用している
 - SSE-C ... S3側で行う暗号化。キー管理はユーザ(自分で準備する必要ある）
-バッチオペレーションでオブジェクトに対するAPIアクションを一括実行できる
