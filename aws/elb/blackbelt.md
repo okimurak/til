@@ -169,6 +169,9 @@ ALB, NLBが使える。エンドポイントにALB, NLBを指定できる
 - Actice接続 or フロー数 10000/min
 - 帯域 2.22Mbps (1GB/hour)
 
+## ターミネーションポリシー
+古いインスタンスのIPを削除する
+
 ## Reference
 - [【AWS Black Belt Online Seminar】Elastic Load Balancing (ELB) - YouTube](https://www.youtube.com/watch?v=4laAoK-zXko&feature=youtu.be)
 - [20191029 AWS Black Belt Online Seminar Elastic Load Balancing (ELB)](https://www.slideshare.net/AmazonWebServicesJapan/20191029-aws-black-belt-online-seminar-elastic-load-balancing-elb)
