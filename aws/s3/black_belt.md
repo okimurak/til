@@ -21,19 +21,11 @@ IAはアクセスが頻繁ではにデータ用
 - S3 Glacier ... 安価なストレージ。90日の保存必要。取り出しに時間かかる
 - S3 Glacier Deep Achive ... Glacierよりも安価。取り出しにとても時間かかる(12時間~48時間)
 - 低冗長化ストレージ(RRS) ... 頻繁にアクセスされる重要度が低いデータ。非推奨
-
 ### 設定
 
 PUT, Post Object, Initiate Multipart Upload APIを使う`x-amz-strage-class`リクエストヘッダーを追加して、ストレージクラスを指定する。指定しないと、STANDARDになる
 
 [Amazon S3 ストレージクラス - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/storage-class-intro.html)
-- スタンダード ... 複数AZにデータを複製
-- スタンダードIA
-- INTELLIGENT_TIERING
-- ONEZONE_ID ... 1つのAZに格納。大災害ではサヨウナラ
-- S3 Glacier ... 安価なストレージ。取り出しに時間かかる
-- S3 Glacier Deep Achive ... Glacierよりも安価。取り出しにとても時間かかる
-- 低冗長化ストレージ(RRS)
 
 ## S3の操作
 しらないのだけ
