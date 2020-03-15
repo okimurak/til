@@ -8,13 +8,25 @@
 
 ## ストレージクラス
 
+IAはアクセスが頻繁ではにデータ用
+
 - スタンダード ... 複数AZにデータを複製
-- スタンダードIA
-- INTELLIGENT_TIERING
-- ONEZONE_ID ... 1つのAZに格納。大災害ではサヨウナラ
-- S3 Glacier ... 安価なストレージ。取り出しに時間かかる
-- S3 Glacier Deep Achive ... Glacierよりも安価。取り出しにとても時間かかる
-- 低冗長化ストレージ(RRS)
+  - 頻繁にアクセスされるデータ
+- INTELLIGENT_TIERING ... 低頻度アクセス層と高頻度アクセス層を自動で行き来
+  - 未知のアクセスパターンのデータに使える
+- スタンダードIA ... 複数AZにデータを複製
+  - プライマリ or 再作成できないデータのコピーでのみ使用
+- ONEZONE_IA ... 1つのAZに格納。大災害ではサヨウナラ
+  - データが再作成できる場合や、クロスリージョンレプリケーション（CRR)設定時のオブジェクトレプリカで使用
+- S3 Glacier ... 安価なストレージ。90日の保存必要。取り出しに時間かかる
+- S3 Glacier Deep Achive ... Glacierよりも安価。取り出しにとても時間かかる(12時間~48時間)
+- 低冗長化ストレージ(RRS) ... 頻繁にアクセスされる重要度が低いデータ。非推奨
+
+### 設定
+
+PUT, Post Object, Initiate Multipart Upload APIを使う`x-amz-strage-class`リクエストヘッダーを追加して、ストレージクラスを指定する。指定しないと、STANDARDになる
+
+[Amazon S3 ストレージクラス - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/storage-class-intro.html)
 
 ## S3の操作
 しらないのだけ
