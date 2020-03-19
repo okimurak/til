@@ -1,5 +1,4 @@
-##
-
+# EC2
 ## CPU
 Intel Xeon, AMD, AWS Graviton <- is 何
 
@@ -7,9 +6,9 @@ Intel Xeon, AMD, AWS Graviton <- is 何
 
 ```
 インスタンスファミリー
-  ^
+  v
    インスタンス世代
-   ^
+   v
   c5d.xlarge
     ^
     追加機能
