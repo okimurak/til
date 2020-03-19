@@ -8,7 +8,7 @@
 
 ## ストレージクラス
 
-IAはアクセスが頻繁ではにデータ用
+IAはアクセスが頻繁なデータ用
 
 - スタンダード ... 複数AZにデータを複製
   - 頻繁にアクセスされるデータ
@@ -59,7 +59,7 @@ Write Once Read Many（Object Lock機能）
 から戻すときの通知をしてくれる
 
 - 迅速(Expedited)
-- 標準)Standard()
+- 標準(Standard
 - 大容量(Bulk)
 
 ## S3 Analytics
@@ -72,7 +72,6 @@ Write Once Read Many（Object Lock機能）
 オブジェクト一覧をCSV形式で取得できる
 バッチオペレーションでオブジェクトに対するAPIアクションを一括実行できる
 
-
 ## 設定項目
 
 - Vault Lock(Glacier)
@@ -83,3 +82,7 @@ Write Once Read Many（Object Lock機能）
 - CSE (Client Side Encryption) ... クライアント側で行う暗号化
 - SSE-S3 ... S3側で行う暗号化。キー管理もS3. AWS-256を使用している
 - SSE-C ... S3側で行う暗号化。キー管理はユーザ(自分で準備する必要ある）
+
+## Reference
+- [【AWS Black Belt Online Seminar】Amazon S3/Glacier - YouTube](https://www.youtube.com/watch?v=oFG5kMZjKtc&feature=youtu.be)
+- [20190220 AWS Black Belt Online Seminar Amazon S3 / Glacier](https://www.slideshare.net/AmazonWebServicesJapan/20190220-aws-black-belt-online-seminar-amazon-s3-glacier)
