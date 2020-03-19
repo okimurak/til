@@ -1,4 +1,6 @@
-## API Gateway
+# API Gateway
+RESTやWebSocket APIを作成して、AWSやAWSに保存しているデータや他のWEBサービスにアクセスすることができるサービス。
+サーバレスインフラストラクチャの一部（フロントアプリ側）になる。認証も可能。
 
 ## API提供の課題
 
@@ -138,8 +140,15 @@ API Gatewayからの証明書を発行できる
 バックエンド開発者はその証明書に応じて、認可を実装してもらうことができる
 
 ## 料金
-REST ... APIコール数, キャッシュメモリ量
-WebSocket APi ... メッセージ要求数, 接続時間
+- REST ... APIコール数, キャッシュメモリ量
+  - APIコール数 100万件、メッセージ100万、接続時間750000分は無料（月に）
+  - 遊ぶくらいなら無料で使えてイイね
+- WebSocket APi ... メッセージ要求数, 接続時間
+
+[料金]([https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html))
+
+
 
 ## Reference
 - [20190514 AWS Black Belt Online Seminar Amazon API Gateway](https://www.slideshare.net/AmazonWebServicesJapan/20190514-aws-black-belt-online-seminar-amazon-api-gateway)
+- [Amazon API Gateway とは?]([http://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html](http://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html))
