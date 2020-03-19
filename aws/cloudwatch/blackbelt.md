@@ -1,4 +1,4 @@
-# Black Belt
+# CloudWatch
 
 リソース、アプリケーション、オンプレミスのモニタリングサービス
 
@@ -12,7 +12,6 @@
 
 - ディメンション
   - メトリクスを一意に識別する名前(InstanceID)/メトリクス
-
 
 - pxx(p40とか)はパーセンタイルのこと
 
@@ -30,24 +29,30 @@ CLI経由で登録できる
 StatsD, collectd, procstatに対応
 
 ## CloudWatchAlarms
-
-- INSUFFICIENT_DATA .. データ不足のため、状態を判別できない状態
+- アラーム状態
+  - OK
+  - ALARM
+  - INSUFFICIENT_DATA .. データ不足のため、状態を判別できない状態。CloudWatchにデータが入っていないということ。必ずしも障害を表す状態ではない
 
 ### データの欠落
 4種類の挙動を設定できる
 
-### Action
+- missing ... 欠落データポイントを考慮に入れない(default)
+- notBreaching ... 欠落データポイントはしきい値内として処理
+- breaching ... 欠落データポイントはしきい値超過として処理
+- ignore ... 現在のアラーム状態が維持
 
+### Action
 - SNS
 - EC2
   - リブート、Auto Recovery
-
 - EC2 Auto Scaling
 
 ### Billing Alarm
 必須。
 
 ## CloudWatchLogs
+ログファイルの監視、保存、アクセス
 
 ### MetricsFilter
 正規表現が使えない
@@ -72,19 +77,19 @@ StatsD, collectd, procstatに対応
 
 ただし、VPC, Route53, Lambdaは更にフィールドを提供している
 
-```
-field ログフィールドを指定
-filter フィルター
-stats 統計関数を用いて計算
-sort 並び替え.Descで逆順
-limit ログイベント数の上限
-parse データを抽出
-```
+|フィールド名|説明|
+|---|---|
+|field| ログフィールドを指定|
+|filter| フィルター|
+|stats| 統計関数を用いて計算|
+|sort| 並び替え|.Descで逆順
+|limit| ログイベント数の上限|
+|parse| データを抽出|
+
 
 ## CloudWatch Dashboards
-
-
-### Wiget
+カスタマイズ可能なホームページ
+### ウィジェット
 - 折れ線
 - スタックエリア
 - 数値
@@ -92,7 +97,7 @@ parse データを抽出
   - Markdownで書ける
 - Logs InsightsのQuery結果
 
-### API/CLi
+### API/CLI
 
 get-dashboardで取得し、put-dashboardでコピーできる
 
@@ -107,4 +112,8 @@ Timebaseが定期実行の形式
 他のAWSアカウントと送受信するAWSアカウントを指定可能
 
 ### AWS Healthとの連携
+AWS HealthはAWSのリソース、サービスアカウントの状態を可視化。このイベントを監視して、アクションをする事が可能
 
+## Reference
+- [20190326 AWS Black Belt Online Seminar Amazon CloudWatch](https://www.slideshare.net/AmazonWebServicesJapan/20190326-aws-black-belt-online-seminar-amazon-cloudwatch)
+- [【AWS Black Belt Online Seminar】Amazon CloudWatch - YouTube](https://www.youtube.com/watch?v=gOaZeJpb0Y4&feature=youtu.be)
