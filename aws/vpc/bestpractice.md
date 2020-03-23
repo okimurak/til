@@ -24,7 +24,6 @@
   - Inbound Endpoint
     - オンプレのDNSリゾルバからはココに飛ばすように設定しておく
   - Outbound Endpoint
-    - Oudboundルールに書く
-    - 
+    - Oudboundルールにオンプレ側のアドレスを行うこと
 
 # Reference
