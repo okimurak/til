@@ -3,7 +3,6 @@
 クラウド上の データウェアハウス(分析可能なリポジトリ)およびデータレイク
 -  [データウェアハウスとは? - アマゾン ウェブ サービス (AWS)](https://aws.amazon.com/jp/data-warehouse/)
 
-
 PostgreSQL互換のSQL
 
 ## 構成
@@ -286,3 +285,5 @@ RDS/Aurora PotgreSQlに対して、直接クエリ可能に
 - [20190122 AWS Black Belt Online Seminar Amazon Redshift Update](https://www.slideshare.net/AmazonWebServicesJapan/20190122-aws-black-belt-online-seminar-amazon-redshift-update)
 - [【AWS Black Belt Online Seminar】Next Generation Redshift - YouTube](https://www.youtube.com/watch?v=CkSBRQYkHXM&feature=youtu.be)
 - [20200218 AWS Black Belt Online Seminar Next Generation Redshift](https://www.slideshare.net/AmazonWebServicesJapan/20200218-aws-black-belt-online-seminar-next-generation-redshift)
+- [【AWS Black Belt Online Seminar】Amazon Redshift - YouTube](https://www.youtube.com/watch?v=Myzy68VEXjM&feature=youtu.be)
+- [20200318 AWS Black Belt Online Seminar Amazon Redshift](https://www.slideshare.net/AmazonWebServicesJapan/20200318-aws-black-belt-online-seminar-amazon-redshift)
