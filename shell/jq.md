@@ -15,3 +15,14 @@ jq "(<対象のオブジェクトパス> | select(<対象の項目> == \"<置換
 ```shell
 jq "(<対象のオブジェクトパス> | select(<対象の項目> | test(\"<正規表現>\")) | <対象の項目>) |= \"<置換後値>\""
 ```
+
+## Add object in array
+
+- 例えば "hogehoge" を追加するとき
+```shell
+jq "(<対象のオブジェクトパス（配列）> |= .+ [\"hogehoge\"])"
+```
+- key value形式の "hogehoge" : "fugafuga"
+```shell
+jq "(<対象のオブジェクトパス（配列）> |= .+ [{\"hogehoge\": \"fugafuga\" }])"
+```
