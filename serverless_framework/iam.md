@@ -2,11 +2,11 @@
 
 ## 大前提
 
-公式が`Administrator Access`を推奨しており、良くないため、IAMで多少リソースを絞りましょうっていう話
+公式が`Administrator Access`を推奨しており、良くないため、IAM で多少リソースを絞りましょうっていう話
 
 ## 最低限必要なアクション
 
-ServerlessFrameworkでは内部的に、CloudFormationを使っている
+ServerlessFramework では内部的に、CloudFormation を使っている
 
 ```
                 "cloudformation:CancelUpdateStack",
@@ -43,11 +43,11 @@ ServerlessFrameworkでは内部的に、CloudFormationを使っている
                 "states:DeleteStateMachine"
 ```
 
-残り許可するのはLambdaと連携するAWSのマネージドサービスがどれかという問題
+残り許可するのは Lambda と連携する AWS のマネージドサービスがどれかという問題
 
 - S3
 - DynamoDB
-- EC2 (ENI使う場合とか)
+- EC2 (ENI 使う場合とか)
 - Kinesis
 - SNS
 - IAM (他でコード管理しているなら、あまり追加したくない)
@@ -55,6 +55,7 @@ ServerlessFrameworkでは内部的に、CloudFormationを使っている
 - SQS
 
 ## Reference
-- [ServerlessインストールからLambdaへのデプロイ]((https://qiita.com/jumjamjohn/items/abbc060fd2c1c6791ef3))
-- [ServerlessBot IAMCredentials.json(公式ブログのGithubGist)](https://gist.github.com/ServerlessBot/7618156b8671840a539f405dea2704c8)
+
+- [Serverless インストールから Lambda へのデプロイ](<(https://qiita.com/jumjamjohn/items/abbc060fd2c1c6791ef3)>)
+- [ServerlessBot IAMCredentials.json(公式ブログの GithubGist)](https://gist.github.com/ServerlessBot/7618156b8671840a539f405dea2704c8)
 - [Serverless Framework: Minimal IAM role Permissions](https://medium.com/@dav009/serverless-framework-minimal-iam-role-permissions-ba34bec0154e)
