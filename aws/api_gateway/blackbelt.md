@@ -1,29 +1,33 @@
 # API Gateway
-RESTやWebSocket APIを作成して、AWSやAWSに保存しているデータや他のWEBサービスにアクセスすることができるサービス。
+
+REST や WebSocket API を作成して、AWS や AWS に保存しているデータや他の WEB サービスにアクセスすることができるサービス。
 サーバレスインフラストラクチャの一部（フロントアプリ側）になる。認証も可能。
 
-## API提供の課題
+## API 提供の課題
 
 - インフラの管理
+
   - 可用性
   - スケーラビリティ
 
-- APIの管理
+- API の管理
 
 - 認証と認可
 
 - 流量制御と保護
   - スロットリング
-  - DDOSからの防衛
+  - DDOS からの防衛
 
-## AWSサービスとして
+## AWS サービスとして
 
 - リージョン単位で起動
+
   - 起動でスケール
   - 使用量に応じた課金
 
-- httpsのみ
-  - httpを使う場合はCloudFrontを置く。レイテンシ発生するけど
+- https のみ
+
+  - http を使う場合は CloudFront を置く。レイテンシ発生するけど
 
 - REST
   - ステートレス
@@ -37,14 +41,13 @@ RESTやWebSocket APIを作成して、AWSやAWSに保存しているデータや
 - リージョン
   - レイテンシ削減
 - プライベート
-  - VPC内のAWS PrivateLink(VPCエンドポイント)経由のみ
-
+  - VPC 内の AWS PrivateLink(VPC エンドポイント)経由のみ
 
 ### 新規作成
 
-- 既存APIのClone
+- 既存 API の Clone
 - Swagger(2.0,3.0)
-  - JSON, YAML両方可能
+  - JSON, YAML 両方可能
 
 ### メソッドの流れ
 
@@ -53,32 +56,45 @@ RESTやWebSocket APIを作成して、AWSやAWSに保存しているデータや
 - 統合レスポンス
   - バックエンドからのデータ変換
 - メソッドレスポンス
-  - HTTPのステータスコード、レスポンスヘッダの設定
+  - HTTP のステータスコード、レスポンスヘッダの設定
 
 ## WebSocket
-2回アクセスして接続
- - wss
- - https
+
+2 回アクセスして接続
+
+- wss
+- https
 
 - ルートリクエスト
 - バックエンドへの接続設定
 
 ## 認証、認可
+
+### 認証
+
 - IAM
-  - AWS 署名 v4による認証
-- Lambdaオーソライザー
-  - Lamabdaに認証を委譲
-  - Lambdaを実装する必要
-  
-- Cognitoオーソライザー
+  - AWS 署名 v4 による認証
+    - [Signing Requests - Amazon API Gateway API Reference](https://docs.aws.amazon.com/apigateway/api-reference/signing-requests/)
+    - [完全な 署名バージョン 4 署名プロセスの例 (Python) - AWS 全般のリファレンス](https://docs.aws.amazon.com/ja_jp/general/latest/gr/sigv4-signed-request-examples.html)
+- Lambda オーソライザー
+
+  - Lambda に認証を委譲
+    - 実装する必要。（逆にいうと、自由にカスタムできる）
+
+- Cognito オーソライザー
+  - モバイル向け
+  - Cognito のユーザプールを作成
+    - Google アカウントなどのフェデレーションとかにも使える
+    - ただし、認証部分は実装必要
+    - [Amazon Cognito の認証情報を取得してみる～ API Gateway ＋ Lambda 編～ | MISO](https://www.tdi.co.jp/miso/amazon-cognito-api-gateway)
 
 ## 統合タイプ
 
-- 29秒がタイムアウトリミット
+- 29 秒がタイムアウトリミット
 
-- Lambda関数
+- Lambda 関数
 - HTTP
-  - publicで到達可能なエンドポイント
+  - public で到達可能なエンドポイント
 - Mock
 - AWS Service
 - VPC Link
@@ -91,64 +107,65 @@ RESTやWebSocket APIを作成して、AWSやAWSに保存しているデータや
 
 - バックエンドに投げることなくリクエストの検証ができる
 
-## APIのキーと使用量プラン
+## API のキーと使用量プラン
 
 - 使用量プラン
   - ステージに関連付ける
   - スロットリング
     - クライアント側
     - サーバ側
-- APIキー
+- API キー
   - Key & Value
   - 使用量プランとの紐付けのため(**認証目的で使わないこと**)
 
 ## ログ
 
-CLoudWatch Logsへ
+CLoudWatch Logs へ
 
 - 実行ログ
 - アクセスログ
 
-Metricsは1分に1回
+Metrics は 1 分に 1 回
 
 ## カスタムドメイン
 
-Route53でのDNSレコードの登録とSSL証明書が必要(例えばACM(Certificate Manager))
+Route53 での DNS レコードの登録と SSL 証明書が必要(例えば ACM(Certificate Manager))
 
 ## キャッシュ
 
-LRUによる容量管理。容量 x 時間単位で課金
+LRU による容量管理。容量 x 時間単位で課金
 
 ## リソースポリシー
 
-そのAPIに対する許可/拒否を設定できる
+その API に対する許可/拒否を設定できる
 
 ## カナリアリリース
 
-デプロイ時にCanaryを作成し、メインのステージと流量の割合を指定できる
+デプロイ時に Canary を作成し、メインのステージと流量の割合を指定できる
 
 ## WAF
 
-WebACLを指定可能(L7レベルの保護になる)
+WebACL を指定可能(L7 レベルの保護になる)
 
 ## X-Ray
 
 リクエストのトレースと分析、デバッグが可能
 
 ## クライアント証明書
-API Gatewayからの証明書を発行できる
+
+API Gateway からの証明書を発行できる
 バックエンド開発者はその証明書に応じて、認可を実装してもらうことができる
 
 ## 料金
-- REST ... APIコール数, キャッシュメモリ量
-  - APIコール数 100万件、メッセージ100万、接続時間750000分は無料（月に）
+
+- REST ... API コール数, キャッシュメモリ量
+  - API コール数 100 万件、メッセージ 100 万、接続時間 750000 分は無料（月に）
   - 遊ぶくらいなら無料で使えてイイね
 - WebSocket APi ... メッセージ要求数, 接続時間
 
-[料金]([https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html))
-
-
+[料金](<[https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html)>)
 
 ## Reference
+
 - [20190514 AWS Black Belt Online Seminar Amazon API Gateway](https://www.slideshare.net/AmazonWebServicesJapan/20190514-aws-black-belt-online-seminar-amazon-api-gateway)
-- [Amazon API Gateway とは?]([http://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html](http://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html))
+- [Amazon API Gateway とは?](<[http://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html](http://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html)>)
