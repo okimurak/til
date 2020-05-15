@@ -85,8 +85,12 @@ REST や WebSocket API を作成して、AWS や AWS に保存しているデー
   - モバイル向け
   - Cognito のユーザプールを作成
     - Google アカウントなどのフェデレーションとかにも使える
-    - ただし、認証部分は実装必要
-    - [Amazon Cognito の認証情報を取得してみる～ API Gateway ＋ Lambda 編～ | MISO](https://www.tdi.co.jp/miso/amazon-cognito-api-gateway)
+    - ただし、Cognito へ認証する部分は実装必要
+    - [Amazon Cognito ユーザープール をオーソライザーとして使用して REST API へのアクセスを制御する - Amazon API Gateway](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html)
+    - 構築例
+      - [Amazon Cognito の認証情報を取得してみる～ API Gateway ＋ Lambda 編～ | MISO](https://www.tdi.co.jp/miso/amazon-cognito-api-gateway)
+      - [世界に先駆けて AWS サーバレスアーキテクチャでユーザ認証と API 認可の実装をしてみた - Qiita](https://qiita.com/teradonburi/items/ef535d19c28a009552ec)
+      - [APIGateway の IAM 認証付きの API を Javascript から叩く - Qiita](https://qiita.com/Fujimon_fn/items/5197e2e3db6de9a68401)
 
 ## 統合タイプ
 
