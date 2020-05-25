@@ -1,9 +1,9 @@
 # Import
 
 ```shell
-terraform import <resource name> <resource id> # tfstateにImport
+terraform import <resource path> <resource id> # tfstateにImport
 
-terraform state rm <resource id>
+terraform state rm <resource path>
 ```
 
 `<resource id>` は 物によって全く違うので、各 provider の `resource`を参照する
