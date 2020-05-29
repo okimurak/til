@@ -1,0 +1,41 @@
+service: sample-lambda
+
+stage: ${opt:stage, 'dev'}
+
+plugins:
+  - serverless-domain-manager
+
+provider:
+  name: aws
+  runtime: python3.7
+  region: ap-northeast-1
+  deploymentBucket:
+    name: <S3 Bucket Name>
+  stackName: ${self:service}-${self:provider.stage}
+
+custom:
+  config:
+    dev:
+      domain_prefix: "dev."
+      role: arn:aws:iam::<account_id>:role/<lambda_execute_role_name>
+    stg:
+      domain_prefix: "stg."
+      role: arn:aws:iam::<account_id>:role/<lambda_execute_role_name>
+    prod:
+      domain_prefix: ""
+      role: arn:aws:iam::<account_id>:role/<lambda_execute_role_name>
+  customDomain:
+    domainName: ${self.custom.config.${self.provider.state}.domain_prefix}hogehoge_fugafuga.co.jp
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
+functions:
+  Lambda:
+    name: ${self:service}_${self:provider.stage}
+    handler: lambda.handler
+    role: ${self:custom.config.${self:provider.stage}.role}
+    events:
+      - http:
+          method: get
+          path: hello
