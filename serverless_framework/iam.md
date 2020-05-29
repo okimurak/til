@@ -53,6 +53,14 @@ ServerlessFramework では内部的に、CloudFormation を使っている
 - IAM (他でコード管理しているなら、あまり追加したくない)
 - API Gateway
 - SQS
+- SSM
+  - Secure Stringならば KMS も
+
+```
+"ssm:GetParameter"
+"kms:GetPublicKey"
+"kms:Decrypt"
+```
 
 ## Reference
 
