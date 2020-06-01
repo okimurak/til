@@ -128,6 +128,8 @@ REST や WebSocket API を作成して、AWS や AWS に保存しているデー
   - 指定した時間間隔の制限
     - 日(DAY)、週'Week)、月(Month)から選択できる
 
+- [Amazon API Gateway のクォータと重要な注意点 - Amazon API Gateway](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/limits.html)
+
 ### API キー
 
 - Key & Value
