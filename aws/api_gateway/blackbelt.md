@@ -190,11 +190,11 @@ API Gateway からの証明書を発行できる
 ## 料金
 
 - REST ... API コール数, キャッシュメモリ量
-  - API コール数 100 万件、メッセージ 100 万、接続時間 750000 分は無料（月に）
+  - 最初の12ヶ月は、API コール数 100 万件、メッセージ 100 万、接続時間 750000 分は無料（月に）
   - 遊ぶくらいなら無料で使えてイイね
 - WebSocket APi ... メッセージ要求数, 接続時間
 
-[料金](<[https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-pricing.html)>)
+[料金](https://aws.amazon.com/jp/api-gateway/pricing/)
 
 ## Reference
 
