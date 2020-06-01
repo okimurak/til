@@ -16,7 +16,7 @@ provider:
 custom:
   config:
     dev:
-      domain_prefix: "dev."
+      domain_prefix: "dev." # prefixを定義して
       role: arn:aws:iam::<account_id>:role/<lambda_execute_role_name>
     stg:
       domain_prefix: "stg."
@@ -25,7 +25,7 @@ custom:
       domain_prefix: ""
       role: arn:aws:iam::<account_id>:role/<lambda_execute_role_name>
   customDomain:
-    domainName: ${self.custom.config.${self.provider.state}.domain_prefix}hogehoge_fugafuga.co.jp
+    domainName: ${self.custom.config.${self.provider.state}.domain_prefix}hogehoge_fugafuga.co.jp # こんな感じで、prefixをつなげてあげる。そうすることで、prodだけprodをつけないことが可能
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true
