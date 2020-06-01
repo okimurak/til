@@ -113,14 +113,25 @@ REST や WebSocket API を作成して、AWS や AWS に保存しているデー
 
 ## API のキーと使用量プラン
 
-- 使用量プラン
-  - ステージに関連付ける
-  - スロットリング
-    - クライアント側
-    - サーバ側
-- API キー
-  - Key & Value
-  - 使用量プランとの紐付けのため(**認証目的で使わないこと**)
+### 使用量プラン
+
+ステージに関連付ける
+
+- スロットリング
+
+  - レートとバーストを設定する
+    - 秒間に受けられるリクエスト数
+  - クライアント側
+  - サーバ側
+
+- クォータ制限
+  - 指定した時間間隔の制限
+    - 日(DAY)、週'Week)、月(Month)から選択できる
+
+### API キー
+
+- Key & Value
+- 使用量プランと紐付ける **認証目的で使わないこと**
 
 ## ログ
 
@@ -142,6 +153,20 @@ LRU による容量管理。容量 x 時間単位で課金
 ## リソースポリシー
 
 その API に対する許可/拒否を設定できる
+
+- AWS アカウント
+- IP
+- VPC, VPC エンドポイント
+
+- [API Gateway リソースポリシーを使用して API へのアクセスを制御する - Amazon API Gateway](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-resource-policies.html)
+
+- ARN は以下のようになっている
+
+  ```text
+  arn:aws:execute-api:region:account-id:api-id/stage-name/HTTP-VERB/resource-path-specifier
+  ```
+
+  - [API を呼び出すためのアクセスの制御 - Amazon API Gateway](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html#api-gateway-iam-policy-resource-format-for-executing-api)
 
 ## カナリアリリース
 
