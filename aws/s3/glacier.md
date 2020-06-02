@@ -13,7 +13,7 @@ S3のアーカイブサービス
 アップロード先は**ボールド** というらしい（アーカイブを一まとめ）  
 個々のアーカイブは1~40TBまでという制約はある
 
-```
+```bash
 aws glacier upload-archive --account-id %ACCOUNT_ID% --vault-name %VAULT_NAME% --archive-description %ZIP_DESC% --body %ZIP_FILENAME%
 
 {
@@ -29,7 +29,7 @@ aws glacier upload-archive --account-id %ACCOUNT_ID% --vault-name %VAULT_NAME% -
 
 ## アーカイブの確認
 
-```
+```bash
 aws glacier initiate-job --account-id %ACCOUNT_ID% --vault-name %VAULT_NAME% --job-parameters file://inventory-retrieval.json
 
 # Responce
@@ -43,13 +43,14 @@ aws glacier initiate-job --account-id %ACCOUNT_ID% --vault-name %VAULT_NAME% --j
 
 
 ダウンロードするためのジョブを開始する
-```
+
+```bash
 aws glacier get-job-output --account-id %ACCOUNT_ID% --vault-name %VAULT_NAME% --job-id %JOB_ID% %OUTPUT_FILENAME%
 ```
 
 数時間かかるので、以下でジョブ状態を確認できる
 
-```
+```bash
 aws glacier list-jobs --account-id %ACCOUNT_ID% --vault-name %VAULT_NAME%
 ```
 
