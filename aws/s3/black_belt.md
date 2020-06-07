@@ -97,9 +97,17 @@ Write Once Read Many（Object Lock 機能）
 
 ## S3 Analytics
 
-- 格納量と READ の割合を示してくれる
-  ->どのストレージクラスを使うべきかの目安になる
-- QuickSight で見ることもできる
+バケット内のオブジェクトのアクセスパターンを分析して、適切なストレージクラスを決定するための指標を作れる。
+30 日以上観察して、分析データが作られる
+
+- バケット全体
+- プレフィックスやタグによって、グループ化されたオブジェクト
+  - グループ化するフィルターを設定できる
+- 分析データのエクスポート
+  - 格納量と READ の割合を示してくれる
+  - QuickSight で見ることもできる
+
+[Amazon S3 分析 – ストレージクラス分析 - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/analytics-storage-class.html)
 
 ## インベントリ
 
@@ -146,7 +154,10 @@ SELECT 文を使える。オブジェクト単位で
 ## 料金
 
 - 小さいファイルは zip などでまとめて送るのがベストプラクティス
+
   - GET や PUT はリクエストの回数分転送量がかかるため
+
+- S3 Analytics
 
 ## Reference
 
