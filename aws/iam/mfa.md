@@ -1,9 +1,11 @@
-# MFAを必須にする
+# MFA を必須にする
 
 `Condition`に以下を追加
 
-    "Condition": {
-    	"BoolIfExists": {
-    		"aws:MultiFactorAuthPresent": "true"
-    	}
-    }
+```json
+"Condition": {
+  "BoolIfExists": {
+    "aws:MultiFactorAuthPresent": "true"
+  }
+}
+```

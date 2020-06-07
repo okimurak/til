@@ -1,5 +1,5 @@
-## IAM POlicy Simulator
+## IAM Policy Simulator
 
-IAMポリシーをシミュレートできる
+IAM ポリシーをシミュレートできる
 
 https://policysim.aws.amazon.com/home/index.jsp
