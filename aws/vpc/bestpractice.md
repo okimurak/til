@@ -1,29 +1,32 @@
 # Deepdive
 
-## VPC内からのVPC外のサービスにアクセス
+## VPC 内からの VPC 外のサービスにアクセス
 
-- S3, DynamoDB ... VPC Endpoint (Gateway型)
-- ELR ... VPC Endpoint(Interface型)
+- S3, DynamoDB ... VPC Endpoint (Gateway 型)
+- ELR ... VPC Endpoint(Interface 型)
 - Cognito ... NAT Gateway
 - インターネット ... NAT Gateway
 
-## オンプレからVPC外のサービスにアクセス
-オンプレ - DirectConnect - VGW以降の経路の話
+## オンプレから VPC 外のサービスにアクセス
 
-- S3, DynamoDB ... Proxy on EC2経由 - VPC Endpoint (Gateway型)
-- VPC Endpoint(Interface型)に対応しているやつ ... VPC Endpoint(Interface型)にそのまま
-- VPC未対応サービス ... VPC Endpoint(Interface型) -Private Link - NLB - Proxy on EC2経由 - NAT Gateway
-- VPC未対応サービス, 別リージョン ... Public VIFで接続
+オンプレ - DirectConnect - VGW 以降の経路の話
 
-# Route53
+- S3, DynamoDB ... Proxy on EC2 経由 - VPC Endpoint (Gateway 型)
+- VPC Endpoint(Interface 型)に対応しているやつ ... VPC Endpoint(Interface 型)にそのまま
+- VPC 未対応サービス ... VPC Endpoint(Interface 型) -Private Link - NLB - Proxy on EC2 経由 - NAT Gateway
+- VPC 未対応サービス, 別リージョン ... Public VIF で接続
 
-オンプレ- AWS間の、Route53に対してDNS解決をしたい
+## Route53
 
-- 以前はSimple AD
-- 今は、Route 53 Resolver Endpointを使う
+オンプレ- AWS 間の、Route53 に対して DNS 解決をしたい
+
+- 以前は Simple AD
+- 今は、Route 53 Resolver Endpoint を使う
   - Inbound Endpoint
-    - オンプレのDNSリゾルバからはココに飛ばすように設定しておく
+    - オンプレの DNS リゾルバからはココに飛ばすように設定しておく
   - Outbound Endpoint
-    - Oudboundルールにオンプレ側のアドレスを行うこと
+    - Oudbound ルールにオンプレ側のアドレスを行うこと
 
-# Reference
+## Reference
+
+- [「ネットワークデザインパターン Deep Dive」 | AWS Summit Tokyo 2019 - YouTube](https://www.youtube.com/watch?v=6I7jQOLOiWY)

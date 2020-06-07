@@ -1,15 +1,14 @@
 # インスタンスプロファイル
 
-EC2の起動時に設定できるロールの設定のこと  
-今まではEC2用のユーザを作って、設定する必要があったが、これをする必要がなくなった  
-これはEC2の起動中にもアタッチできる
+EC2 の起動時に設定できるロールの設定のこと  
+今までは EC2 用のユーザを作って、設定する必要があったが、これをする必要がなくなった  
+これは EC2 の起動中にもアタッチできる
 
-
-EC2にインスタンスプロファイルを設定すると、`aws configure list`を実行すると`Type`が`iam-role`になる
+EC2 にインスタンスプロファイルを設定すると、`aws configure list`を実行すると`Type`が`iam-role`になる
 
 ```shell
 aws configure list
-### 実行結果
+# 実行結果
 Name                    Value             Type    Location
       ----                    -----             ----    --------
    profile                <not set>             None    None

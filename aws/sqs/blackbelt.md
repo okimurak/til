@@ -22,7 +22,7 @@
       - 連続的にデータを送り、データの順序性に意味がある
     - メッセージング
       - 連続性の意味は持たないで単体で処理をする方式
-  - 同期/非同期方式の検討
+  - 同期 / 非同期方式の検討
     - 同期方式
       - リクエスタがプロバイダの処理完了まで応答を待つ方式
     - 非同期方式
@@ -91,7 +91,7 @@
   - 1 秒に 最大 300 件まで (送信・受信・削除)
   - 配信は 1 回
   - 順序は保つ
-  - 100 万県越えた場合 0.5USD
+  - 100 万件越えた場合 0.5USD
 
 ## キューのメッセージ取得方式
 
@@ -141,6 +141,8 @@
 
 - IAM ポリシー
 - SQS ポリシー
+
+ポリシーを指定する際の Action は下記を参照
 
 [Actions, Resources, and Condition Keys for Amazon SQS - AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsqs.html)
 

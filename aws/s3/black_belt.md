@@ -30,7 +30,7 @@ PUT, Post Object, Initiate Multipart Upload API を使う`x-amz-strage-class`リ
 
 ## S3 の操作
 
-しらないのだけ
+知らない操作だけ
 
 - HEAD ... メタデータを取得
 - RESTORE ... アーカイブされたオブジェクトを S3 に取り出す
@@ -69,31 +69,31 @@ Write Once Read Many（Object Lock 機能）
 一度書いたら消せない
 
 - コンプライアンスオード
-  - rootですら削除 or 無効化できない
-  - Cohasset Associates による SEC 17a-4アセスメント済み
+  - root ですら削除 or 無効化できない
+  - Cohasset Associates による SEC 17a-4 アセスメント済み
 - ガバナンスモード
-  - 特別な権限で WORK保護されたオブジェクトの削除が可能
+  - 特別な権限で WORK 保護されたオブジェクトの削除が可能
   - コンプライアンスモードに変更可能
 
 ## クロスリージョンレプリケーション
 
-異なるリージョン間の S3バケットオブジェクトのレプリケーションを実施
+異なるリージョン間の S3 バケットオブジェクトのレプリケーションを実施
 
 - 対象元バケットはバージョニングを有効にする
 - それぞれ異なるリージョンである必要がある
 - データ転送費用が発生
 - バケット、プレフィクックス、オブジェクト単位でのレプリケーション
 - レプリ元、先でストレージクラスの指定
-- Object Lockは利用できない
-- マルチアカウントでもOK
+- Object Lock は利用できない
+- マルチアカウントでも OK
 
 ## S3 Glacier
 
 から戻すときの通知をしてくれる
 
-- 迅速(Expedited)
-- 標準(Standard
-- 大容量(Bulk)
+- 迅速(Expedited) ... 1~5 分以内 (DEEP ACHIVE は 利用不可)
+- 標準(Standard) ... 3~5 時間 (DEEP ACHIVE は 12 時間以内)
+- 大容量(Bulk) ... 5~12 時間 (DEEP ACHIVE は 48 時間以内)
 
 ## S3 Analytics
 
@@ -108,7 +108,7 @@ Write Once Read Many（Object Lock 機能）
 
 ## 設定項目
 
-- Vault Lock(Glacier)
+- Vault Lock(Glacier) ... 1 度書き込んだら、Read のみ有効になる
 - クロスリージョンレプリケーション ... オブジェクトの登録時に実行できる。また CLI のみ実行できる。双方向もできるけど、別途設定が必要
 
 ## 暗号化
@@ -120,33 +120,33 @@ Write Once Read Many（Object Lock 機能）
 ## パフォーマンス最適化
 
 - 大きなファイルを快適にダウンロード、アップロードできる
-- RANGE GETを使う
+- RANGE GET を使う
 - マルチパートアップロードと同じチャンクサイズを利用するのがベストプラクティス
-  - 100MB以上が目安
+  - 100MB 以上が目安
 
 ## S3 Transfer Acceleration
 
-149のAWSエッジネットワークから、S3との転送を実現。利用者は自動的に最短のエッジネットワークに接続される
+149 の AWS エッジネットワークから、S3 との転送を実現。利用者は自動的に最短のエッジネットワークに接続される
 
-バケットに対して、Accelerationを有効化する
+バケットに対して、Acceleration を有効化する
 
 ## Private
 
-- Direcct Connect経由
-  - private VIFを使う場合
-    - プロキシサーバ(EC2)とS3 VPC EndPointを使う
-  - public VIFを使う場合
-    - Direct Connectから直接
-      - Direct Connect側でルータの設定が必要
+- Direcct Connect 経由
+  - private VIF を使う場合
+    - プロキシサーバ(EC2)と S3 VPC EndPoint を使う
+  - public VIF を使う場合
+    - Direct Connect から直接
+      - Direct Connect 側でルータの設定が必要
 
 ## S3 Select
 
-SELECT文を使える。オブジェクト単位で
+SELECT 文を使える。オブジェクト単位で
 
 ## 料金
 
-- 小さいファイルは、まとめて送るのがベストプラクティス
-  - GETやPUTはリクエストの回数分転送量がかかるため
+- 小さいファイルは zip などでまとめて送るのがベストプラクティス
+  - GET や PUT はリクエストの回数分転送量がかかるため
 
 ## Reference
 

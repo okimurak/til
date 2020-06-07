@@ -125,8 +125,9 @@ REST や WebSocket API を作成して、AWS や AWS に保存しているデー
   - サーバ側
 
 - クォータ制限
+
   - 指定した時間間隔の制限
-    - 日(DAY)、週'Week)、月(Month)から選択できる
+    - 日(DAY)、週(Week)、月(Month)から選択できる
 
 - [Amazon API Gateway のクォータと重要な注意点 - Amazon API Gateway](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/limits.html)
 
@@ -190,9 +191,9 @@ API Gateway からの証明書を発行できる
 ## 料金
 
 - REST ... API コール数, キャッシュメモリ量
-  - 最初の12ヶ月は、API コール数 100 万件、メッセージ 100 万、接続時間 750000 分は無料（月に）
+  - 最初の 12 ヶ月は、API コール数 100 万件、メッセージ 100 万、接続時間 750000 分は無料（月に）
   - 遊ぶくらいなら無料で使えてイイね
-- WebSocket APi ... メッセージ要求数, 接続時間
+- WebSocket API ... メッセージ要求数, 接続時間
 
 [料金](https://aws.amazon.com/jp/api-gateway/pricing/)
 
