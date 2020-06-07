@@ -1,4 +1,4 @@
-# VPC
+# VPC (Virtual Private Cloud)
 
 AWS 上でプライベートネットワーク空間を構築
 

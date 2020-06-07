@@ -1,4 +1,4 @@
-# S3
+# Simple Storege Service (S3)
 
 - S3 はオブジェクトを格納するためのストレージ
   - 階層構造ではない（prefix を使って、そう見せてる）

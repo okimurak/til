@@ -1,4 +1,4 @@
-# EBS (Elastic Block Store)
+# Elastic Block Store (EBS)
 
 EC2 にアタッチするブロックレベルのストレージサービス
 

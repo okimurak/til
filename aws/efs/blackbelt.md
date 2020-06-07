@@ -1,45 +1,48 @@
-# EFS
+# Elastic File System (EFS)
 
 ## 概要
-NWファイルストレージサービス
 
-NFS v4.0 / 4.1 (CIFS/SMBは対象外, Win無理)
+NW ファイルストレージサービス
 
-DBのストレージのように、レイテンシーを求められるならば、EBSのほうがいい
+NFS v4.0 / 4.1 (CIFS/SMB は対象外, Win 無理)
 
-複数AZに複製に保存して保存されるため高耐久、高可用性
+DB のストレージのように、レイテンシーを求められるならば、EBS のほうがいい
 
-Fargateでは無理
+複数 AZ に複製に保存して保存されるため高耐久、高可用性
+
+Fargate では無理
 
 ## 基礎知識
 
-- 各AZにあるマウントターゲットがNFSの接続先
-- EC2から同じAZに作成されているマウントターゲットに接続
-- マウントターゲットのDNS名とIPアドレスは固定なのでDNS名を指定すればいい
-- マウントターゲットにはセキュリティグループ、ネットワークACLを設定できる
+- 各 AZ にあるマウントターゲットが NFS の接続先
+- EC2 から同じ AZ に作成されているマウントターゲットに接続
+- マウントターゲットの DNS 名と IP アドレスは固定なので DNS 名を指定すればいい
+- マウントターゲットにはセキュリティグループ、ネットワーク ACL を設定できる
 
 ### パフォーマンスモード
+
 - 汎用モード ... 基本はこちら
-- 最大I/Oモード
-  - CloudWatchのPercentIOLimitから判断
-    - 汎用モードのI/O限界にどの程度達しているか
+- 最大 I/O モード
+  - CloudWatch の PercentIOLimit から判断
+    - 汎用モードの I/O 限界にどの程度達しているか
 
-### NFSクライアント
+### NFS クライアント
 
-v4でも一部対応していない機能がある
-EFSマウントヘルパー利用を推奨
+v4 でも一部対応していない機能がある
+EFS マウントヘルパー利用を推奨
 
-```
+```shell
 sudo yum -y install amazon-efs-utils  ... install
 sudo mount -t efs fs-12345677 -o tls /mnt/efs
 ```
 
-ファイルのロックが可能(v4のアドバイザリーロックに準拠)
+ファイルのロックが可能(v4 のアドバイザリーロックに準拠)
 
 ## 制限
-同一VPCからのみアクセス可能(Direct Connect経由はOK)
 
-EFSのバックアップ機能、バージョニング機能は未提供なので、EBSやEBS スナップショットなどにバックアップする必要あり
+同一 VPC からのみアクセス可能(Direct Connect 経由は OK)
+
+EFS のバックアップ機能、バージョニング機能は未提供なので、EBS や EBS スナップショットなどにバックアップする必要あり
 
 ## 推奨マウントオプション
 
@@ -50,40 +53,40 @@ EFSのバックアップ機能、バージョニング機能は未提供なの�
 - Measure Time out = 2
 - async mode
 
-- 上記の推奨設定をEFSマウントヘルパーで設定できる(TLS1.2で通信の暗号化もしてくれる）
+- 上記の推奨設定を EFS マウントヘルパーで設定できる(TLS1.2 で通信の暗号化もしてくれる）
 
 ## 移行
 
-EFS File Syncがいいらしい
-cpやrsyncに比べて最大で5倍高速
-EC2か、VM ESXiでエージェントを実行
+EFS File Sync がいいらしい
+cp や rsync に比べて最大で 5 倍高速
+EC2 か、VM ESXi でエージェントを実行
 
 ## Security
 
 - NW Traffic
   - Security Group
   - ACL
-- POSIX権限により、アクセス制御
-- IAMで管理者
+- POSIX 権限により、アクセス制御
+- IAM で管理者
 
 ## Performance
 
-- IO処理、ファイル操作にはレイテンシーのオーバーヘッドがある
+- IO 処理、ファイル操作にはレイテンシーのオーバーヘッドがある
 - バーストモデルがある
   - ベースラインスループットによって蓄積化消費化が決まる
 
 ## 低頻度アクセスストレージ
 
-128KBかつ30日以上アクセスも変更されていないファイルを対象として移動できる。コストが85%下がる
+128KB かつ 30 日以上アクセスも変更されていないファイルを対象として移動できる。コストが 85%下がる
 
 ライフサイクル設定で設定できる
 
 ## 料金
 
-- Tokyo Region 0.36 GB / 月
+- Tokyo Region 0.36 USD (GB / 月)
 
 ## 参考
 
-- [20180704(20190520 Renewed) AWS Black Belt Online Seminar Amazon Elast…](https://www.slideshare.net/AmazonWebServicesJapan/2018070420190520-renewed-aws-black-belt-online-seminar-amazon-elastic-file-system-amazon-efs)
+- [20180704(20190520 Renewed) AWS Black Belt Online Seminar Amazon Elastic File System](https://www.slideshare.net/AmazonWebServicesJapan/2018070420190520-renewed-aws-black-belt-online-seminar-amazon-elastic-file-system-amazon-efs)
 
 - [Amazon EFS（EC2 用フルマネージド型ファイルシステム）\| AWS](https://aws.amazon.com/jp/efs/)

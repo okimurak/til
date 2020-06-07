@@ -1,4 +1,4 @@
-# EC2
+# Elastic Compute Cloud (EC2)
 
 ## CPU
 
