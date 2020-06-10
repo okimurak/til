@@ -53,6 +53,10 @@ PUT, Post Object, Initiate Multipart Upload API を使う`x-amz-strage-class`リ
 
 オブジェクトごとに一定期間だけアクセスできる URL。URL 生成した IAM ユーザロールの権限が用いられる
 
+## 署名つき Cookie
+
+現在の URL を変更したくない場合や、複数の制限つきファイルのアクセスを提供する場合に使う
+
 ## Web サイトホスティング
 
 https は使えないので、その場合には CloudFront 経由で配信しようね。
