@@ -4,7 +4,7 @@
 terraform apply
 ```
 
-- `target=<resourse_id>` ... 特定のリソースだけ
+- `-target=<resourse_id>` ... 特定のリソースだけ
 
 https://www.terraform.io/docs/commands/plan.html#resource-targeting
 
