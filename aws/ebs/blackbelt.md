@@ -57,26 +57,43 @@ EC2 にアタッチするブロックレベルのストレージサービス
 EBS ボリュームを EC2 インスタンスにアタッチ中もサイズや IOPS を変更できる
 
 - 拡張は可、縮小は不可
+- IOPS は徐々に反映（1TiB だと、6 時間ぐらいかかる）
+- 一度変更すると、6 時間は変更不可
 
 ## Snapshot
 
 バックアップを取得する
 
 - 静止点を設けることを推奨(Linux の `xfs_freeze`)
-  - 作成支持レスポンスが返るまでで OK
+  - 作成指示レスポンスが返るまでで OK
 - 難しいならアプリ停止、ファイルシステムのアンマウントが必要
 - 世代は無限
 
 - 他リージョンに Snapshot をコピーできる(DR 構成も可能になる)
 
+- Snapshot の完了を CloudWatchEvent を使って検出できる
+
+### リストア
+
+- Snapshot から新規 EBS を作成して、既にアタッチされていたものと置きかえる
+
 ### 作成方法
 
 - CLI SDK コンソール
-- CloudWatchEvent
-- Amazon DML
+- Systems Manager の Run Command
+  - Linux, Windows の両方を扱う環境で有効
+  - 定期的な Snapshot は CloudWatchEvent の cron を使う
+- Amazon Data Lifecycle Manager (DLM)
+  - 世代管理、自動化したい場合
+    - 取得から削除まで一貫して管理
+    - 1000 世代まで
+    - タグ付使ってグルーピングも可能
 - AWS Backup
+  - 他のサービス(EFS, RDS, DynamoDB, Strage Gateway)も含めて一元管理したい場合
+  - バックアップポリシーにて取得から削除まで管理する
+  - バックアップ時の鍵は KMS で
 
-### 暗号化
+## 暗号化
 
 - AES256 で暗号化
 - Data キーは KMS でも CMK でも OK
@@ -87,7 +104,9 @@ EBS ボリュームを EC2 インスタンスにアタッチ中もサイズや I
 ## Etc
 
 - 複数の EC2 を一つの EBS にアタッチできるようになった
-- 制限あった気がする
+- io1 を Nitro ベースのインスタンスを最大 16 台
+
+* [Amazon EBS マルチアタッチを使用した複数のインスタンスへのボリュームのアタッチ - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations)
 
 ## Reference
 
