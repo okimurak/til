@@ -87,8 +87,38 @@ GlobalTable では、デフォルト無効、有効後もトランザクショ�
     - 偏りがある場合もある
       - Adaptive capacity ... 偏りがあるパーティーションに対して集中的にキャパシティを割り当てる
 
-- オンデマンド
+- on Demand モード
   - ある一瞬だけスパイクして DB にアクセスする場合に有効
+
+## ストリーム
+
+- テーブルの変更に対して順序づけられた情報。
+- 使用するには、ストリームを有効化し、アプリケーションが DB とは別個のエンドポイント (`streams.dynamody.<region>.amazaonaws.com`) にアクセスして使用
+- ストリームレコードは「シャード」という単位で整理される。シャード内のストリームレコードは 24 時間で自動的に削除される
+- Kinesis Adapter がお勧め。 Kinesis Data Streams の API と似たものになっているため
+- ストリームが流れたことをトリガーにして (DynamoDB Triggers) Lambda を発火できる
+
+- [DynamoDB ストリーム を使用したテーブルアクティビティのキャプチャ - Amazon DynamoDB](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/Streams.html)
+- [Amazon DynamoDB ストリームを使用して、順序付けされたデータをアプリケーション間でレプリケーションする方法 | Amazon Web Services ブログ](https://aws.amazon.com/jp/blogs/news/how-to-perform-ordered-data-replication-between-applications-by-using-amazon-dynamodb-streams/)
+
+## グローバルテーブル
+
+複数リージョンレプリケーション (クロスリージョンレプリケーション) ができる、テーブルを作成できる
+
+地理的に離れた、環境で分散させたい場合に使える
+
+- [グローバルテーブル: DynamoDB を使用した複数リージョンレプリケーション - Amazon DynamoDB](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/GlobalTables.html)
+
+## バックアップ
+
+- オンデマンドバックアップ
+  - 完全なバックアップを作成できる。コンソールか、API かｒ
+- ポイントインタイムリカバリ
+
+  - 自動バックアップする機能
+  - 保持期間は 35 日間で、変更不可
+
+- [DynamoDB のオンデマンドバックアップおよび復元 - Amazon DynamoDB](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/BackupRestore.html)
 
 ## NoSQL のモデリング
 
