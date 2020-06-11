@@ -157,7 +157,11 @@ SELECT 文を使える。オブジェクト単位で
 
   - GET や PUT はリクエストの回数分転送量がかかるため
 
-- S3 Analytics
+- S3 Inventory はリストアップされるオブジェクト 100 万個あたり 0.0028USD
+- S3 Analytics はオブジェクト 100 万個あたり、0.10 USD
+- タグ付けもオブジェクト 100 万個あたり、0.01USD
+
+[料金 - Amazon S3 ｜ AWS](https://aws.amazon.com/jp/s3/pricing/)
 
 ## Reference
 
