@@ -90,7 +90,7 @@ S3 と組み合わせて、4XX や 5XX 発生したときに S3 からコンテ�
 
 ### SSL 証明書
 
-- デフォルトは cloudfront.net の証明書
+- デフォルトは `cloudfront.net` の証明書
 - 独自 SSL 証明書
 
   - X.509 PEM
@@ -209,7 +209,7 @@ S3 のアップロードに連動した Lambda から Invalidation を発行し�
 - 専用 IP 独自 SSL 証明書
 - オリジンへのデータ転送アウト
 - CloudFront へのデータ転送アウト
-  - 0USD
+  - 0 USD
 - 無効リクエスト
   - 1000 ファイルまで追加料金無し
 
