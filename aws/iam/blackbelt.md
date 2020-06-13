@@ -167,6 +167,10 @@ IAM 認証情報レポートをダウンロードできる
 
 - パスワードの有効期限
 
+## SSL 証明書
+
+ACM でサポートされていないリージョンで HTTPS 接続をサポートする場合のみ、証明書マネージャーとして利用できる(API のみ)
+
 ## Reference
 
 - [【AWS Black Belt Online Seminar】AWS Identity and Access Management (AWS IAM) Part1 - YouTube](https://www.youtube.com/watch?v=K7F5yTThynw&list=PLzWGOASvSx6FIwIC2X1nObr1KcMCBBlqY&index=33&t=0s)
