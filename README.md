@@ -2,6 +2,22 @@
 
 A repository of what I learned today.
 
+## Requirement
+
+- Node
+
+## Linter
+
+- textlint
+
+```bash
+npm install
+```
+
+## Language
+
+Japanese
+
 ## License
 
 © 2020 okimurak
