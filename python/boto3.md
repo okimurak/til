@@ -23,3 +23,8 @@ ECSはcredentialは記載がないが、3の環境変数か6のAssume role時に
 [該当コード](https://github.com/boto/botocore/blob/develop/botocore/credentials.py#L70-L89)
 
 - [Credentials — Boto 3 Docs 1.12.3 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html)
+
+## Error Handling
+
+
+- [Error handling — Boto3 Docs 1.14.17 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/error-handling.html#parsing-error-responses-and-catching-exceptions-from-aws-services)
