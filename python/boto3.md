@@ -26,5 +26,10 @@ ECSはcredentialは記載がないが、3の環境変数か6のAssume role時に
 
 ## Error Handling
 
+`botocore.exceptions`が例外の基底クラスなので、そこから派生するクラスはキャッチできる
+
+- [Error handling — Boto3 Docs 1.14.17 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/error-handling.html#botocore-exceptions)
+
+ただし、それ以外の動的例外もあり、その場合は parse が必要
 
 - [Error handling — Boto3 Docs 1.14.17 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/error-handling.html#parsing-error-responses-and-catching-exceptions-from-aws-services)
