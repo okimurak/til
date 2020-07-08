@@ -22,6 +22,5 @@ API Gateway のカスタムドメインを登録できる
 
 ローカルのディレクトリを S3としてエミュレートできる  
 ただし、Lambda側でローカルのS3を呼び出すためにエンドポイントを指定するなど必要  
-また、S3Eventのエミュレートには対応していない
 
 [ar90n/serverless-s3-local](https://github.com/ar90n/serverless-s3-local)
