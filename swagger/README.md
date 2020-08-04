@@ -4,7 +4,11 @@
 
 ## とは
 
-REST API のドキュメントフレームワーク。 YAML や JSON 　に定義を記載する。Open API Initiative が標準化されたことを堺に Swagger への流れが。今では Swagger から API を作成（AWS の API Gateway)することもできる、
+REST API のドキュメントフレームワーク。 YAML や JSON 　に定義を記載する。Open API Initiative が標準化されたことを堺に Swagger への流れが。今では Swagger から API を作成（AWS の API Gateway)することもできる。
+
+## Swagger 2.0 と Open API  3.0
+
+Swagger 3.0 は Open API 3.0 へと名前が変わった
 
 ## Swagger Specification (Swagger Spec)
 
