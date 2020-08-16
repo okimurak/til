@@ -2,7 +2,6 @@
 
 の基礎をまとめていく（知らない部分だけ）
 
-
 ## Method
 
 - range() ... 範囲関数
@@ -117,7 +116,6 @@ def outer(a, b):
 outer(1, 2)
 ```
 
-
 ### Closure
 
 ```python
@@ -132,7 +130,7 @@ print(f())
 
 ### Decorator
 
-Inner Functionを使えば、簡単にかける
+Inner Function を使えば、簡単にかける
 
 ```python
 def print_info(func):
@@ -153,4 +151,54 @@ print(f)
 # アノテーションなしだと、以下のように書く
 #f = print_info(plus)
 #print(f(15, 25))
+```
+
+### Lambda
+
+`lambda` 演算子をつかう
+
+```python
+
+def change_words(words, func):
+  for word in words:
+    print(func(word))
+
+
+l = ['Mon', 'tue', 'Wed', 'Thu', 'fri', 'sat', 'Sun']
+
+change_words(l, lambda word: word.capitalize())
+```
+
+### Generator
+
+```python
+
+def run_counter(num=5):
+  for _ in range(num):
+    yield 'run'
+
+def greeting():
+  yield 'Good morning'
+  yield 'Good afternoon'
+  yield 'Good nignt'
+
+g = greeting
+
+print(next(g))
+```
+
+### Comprehension
+
+内包表記
+
+```python
+d = [1,2,3,4,5]
+key = ['A', 'B', 'C']
+value = ['apple', 'banana', 'chocolate']
+
+list = [i for i * 2 in d if i % 2 == 0]
+dict = {x: y, for x, y in zip(key, value)}
+set = {s for i in range(10) if s % 2 == 0}
+tupple = tupple(i fof i in range(10))
+generator = (i fof i in range(10))
 ```
