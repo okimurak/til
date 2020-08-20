@@ -15,9 +15,11 @@ ECS のサイドカーとして標準出力をログ管理をするソフトウ�
 
 (他にもあるかも)
 
-## 設定方法
+## タスク定義への設定方法
 
-タスク定義にサイドカーとして設定する。(dependsOn をつけておいたほうが無難)
+タスク定義にサイドカーとして設定する。(dependsOn をつけておいたほうが無難)。イメージは AWS がリージョンごとに準備しているので、それを使う。(カスタム設定は後述するが S3 に配置してカスタム設定することも可能)
+
+また、タスク定義の`firelensConfiguration`の `options` に `enable-ecs-log-metadata` を true にすると、`ecs_cluster`, `ecs_task_arn`, `ecs_task_definition` を出力させることができる。(デフォルトでは true)
 
 ### fluent-bit
 
@@ -149,24 +151,25 @@ ECS のサイドカーとして標準出力をログ管理をするソフトウ�
   @type unix
    path "/var/run/fluent.sock"
 </source>
-<source>
+<source>  ... ここでアプリケーションコンテナからのログを受け取る
   @type forward
    bind "127.0.0.1"
   port 24224
 </source>
-<filter **>
+<filter **> ... ここが ecs_task_definition を true にした場合
   @type record_transformer
   <record>
     ecs_cluster arn:aws:ecs:ap-northeast-1:XXXXXXXXXXX:cluster/firelens_sample
     ecs_task_arn arn:aws:ecs:ap-northeast-1:XXXXXXXXXXX:task/firelens_sample/0bb8f14815514c6fb3d42685d23efd6e
-    ecs_task_definition firelens-sample:20
+    ecs_task_definition firelens-sample:XX
   </record>
 </filter>
 
 <このブロックにカスタム configure の設定>
 
-<match firelens-sample-firelens**>
+<match firelens-sample-firelens**> .. ここがアプリケーションコンテナのログドライバーのオプションに設定した項目になる
   @type cloudwatch_logs
+   auto_create_stream true
    log_group_name "/ecs/firelens-example"
    log_stream_name "app"
    region "ap-northeast-1"
@@ -193,7 +196,7 @@ s3 か file を選択できる。s3 の場合は、S3 へのアクセス権限�
 
 ### fluentbit
 
-一番シンプルな設定で以下のような感じ。`ecs_cluster`, `ecs_task_arn`, `ecs_task_definition` は タスク定義の`firelensConfiguration`の `options` に `enable-ecs-log-metadata` を true にすると出る情報。なおデフォルト true
+一番シンプルな設定で以下のような感じ。
 
 ```json
 {
@@ -201,7 +204,7 @@ s3 か file を選択できる。s3 の場合は、S3 へのアクセス権限�
   "container_name": "/ecs-firelens-sample-11-firelens-sample-fca984cafab0fcd04b00",
   "ecs_cluster": "arn:aws:ecs:ap-northeast-1:XXXXXXXXXXX:cluster/firelens_sample",
   "ecs_task_arn": "arn:aws:ecs:ap-northeast-1:XXXXXXXXXXX:task/firelens_sample/dd406780f4394eb887a3edc656680e9a",
-  "ecs_task_definition": "firelens-sample:11",
+  "ecs_task_definition": "firelens-sample:XX",
   "log": "Hello Shell World!",
   "source": "stdout"
 }
@@ -219,7 +222,7 @@ s3 か file を選択できる。s3 の場合は、S3 へのアクセス権限�
   "container_name": "/ecs-firelens-sample-24-firelens-sample-c4fdbf95fcf9fcb31b00",
   "ecs_cluster": "arn:aws:ecs:ap-northeast-1:XXXXXXXXXXX:cluster/firelens_sample",
   "ecs_task_arn": "arn:aws:ecs:ap-northeast-1:XXXXXXXXXXX:task/firelens_sample/c6eceb11b2da47bc98a63bfdbbadec66",
-  "ecs_task_definition": "firelens-sample:24"
+  "ecs_task_definition": "firelens-sample:XX"
 }
 ```
 
