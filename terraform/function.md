@@ -44,3 +44,31 @@ message = lookup(
   "hogehoge"
 )
 ```
+
+## for_each
+
+`0.12.6` からできるようになった
+オブジェクトの 配列 or 連想配列をイテレーターで値を取得する
+
+[Resources - Configuration Language - Terraform by HashiCorp](https://www.terraform.io/docs/configuration/resources.html#for_each-multiple-resource-instances-defined-by-a-map-or-set-of-strings)
+
+### Example
+
+例を見たほうが早い
+
+```terraform
+variable "keyname_valuename" {
+  type = map(string)
+  default = {
+    key_1 = "value_1"
+    key_2 = "value_2"
+    key_3 = "value_3"
+  }
+}
+
+resource "hogehoge_resource" "hogehoge_context" { # hogehoge_contextが3つ作られる
+  for_each = var.keyname_valuename
+  key      = each.key
+  value    = each.value
+}
+```
