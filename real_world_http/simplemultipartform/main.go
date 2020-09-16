@@ -13,7 +13,7 @@ import (
 func main() {
 	var buffer bytes.Buffer
 	writter := multipart.NewWriter(&buffer)
-	writter.WriteField("name", "MiChel Jacson")
+	writter.WriteField("name", "Michel Jacson")
 	part := make(textproto.MIMEHeader)
 	part.Set("Content-Type", "image/jpeg")
 	part.Set("Content-Disposition", `form-data; name="thumnail"; filename="photo.jpg"`)
@@ -21,7 +21,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	readFile, err := os.Open("photo.jpg")
+	readFile, err := os.Open("../image/photo.jpg")
 	if err != nil {
 		panic(err)
 	}
