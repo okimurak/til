@@ -57,5 +57,3 @@ def test_s3_update():
 
     assert body == 'Good bye'
 ```
-
-
