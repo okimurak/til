@@ -202,3 +202,174 @@ set = {s for i in range(10) if s % 2 == 0}
 tupple = tupple(i fof i in range(10))
 generator = (i fof i in range(10))
 ```
+
+## Class
+
+### Constructor
+
+```python
+
+class Hello(object):
+
+    def __init__(self):
+        ...
+```
+
+### Destructor
+
+```python
+
+class Hello(object):
+
+    def __del__(self):
+        ...
+```
+
+### Extend
+
+```python
+class Tool:
+
+    def __init__(self, model=None)
+        self.model = model
+
+    def use(self):
+        ...
+
+    def name(self):
+        print("Tool")
+        ...
+
+class Scissors(Tool):
+
+    def __init__(self, model=None, size=10)
+        super().__init__(model)
+        self.size = size
+
+    def cut(self):
+      ...
+
+    def name(self):
+        print("Scissors") # override
+
+
+
+s = Scissors()
+
+s.use()
+s.cut()
+```
+
+### Properties
+
+値の入力制限に使うといい
+
+- `_` ... プロパティ経由
+- `__` ... クラス内のみ
+
+```python
+
+class Test(object):
+    def __init__(self, name=None, type=None):
+        self._name = name
+        self.__type = type # Don't access from out
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+
+
+```
+
+以下のように、再定義出来てしまうので注意
+
+```python
+
+
+class Test(object):
+
+    def __init__(self, name=None):
+        self.__name = name
+
+
+t = Test("Mike")
+# print(t.__name) これはインタプリタに怒られる
+t.__name = "Hanako"
+# print(t.__name) Hanako と出力。つまり書き換えられる
+```
+
+### Abstract class
+
+```python
+
+import abc
+
+class Person(metaclass=abc.ABCMeta)
+
+    @abc.abstractmethod
+    def say(self):
+        pass
+
+
+class Police(Person):
+    pass
+
+
+p = Police() # Error
+```
+
+### Multiple Interitance
+
+細書に定義したクラスのメソッド優先
+
+```python
+
+class Thing(object):
+
+    def size(self):
+        print("size")
+
+    def name(self):
+        print("Thing")
+
+class Type(object):
+
+    def name(self):
+        print("Type")
+
+
+class Box(Thing, Type):
+    pass
+
+b = Box()
+
+b.size()  # size
+b.name()  # Thing
+
+```
+
+### Classmethod
+
+```Python
+
+class Test(object):
+
+   kind = "unit"
+
+   @classmedhod
+   def kind(cls):
+       return cls.kind
+
+    @staticmethod
+    def about():
+       return "This is test."
+
+
+print(Test.kind())
+print(Test.about())
+
+```
