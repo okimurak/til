@@ -13,9 +13,39 @@
 
 ## ASL (Amazon Langugae)
 
+ステートマシンへ JSON を入力できる。ステートマシンへ受け取るには下記のように記載する。
+
+入力例：
+
+```:json
+{
+  "input": {
+    "important" : "fugafuga"
+  }
+}
+```
+
+
+ステートマシンでの受け取り例
+
+```:json
+{
+  "hogehoge.$" : "$.imput.important"
+}
+```
+
+また、ステートマシン起動時に予め設定されているオブジェクト([Contextオブジェクト](https://docs.aws.amazon.com/ja_jp/step-functions/latest/dg/input-output-contextobject.html))にもアクセスすることができる
+
+
+```:json
+{
+  "starttime.$$" : "$$.State.EnteredTime"
+}
+```
+
 ## AWS CDK
 
-Stepfunction 用の Construct を使えば、ベストプラクティスに抽象化されているので良い
+StepfunctionできるStepfunctionで良い
 
 ### タスクの順次処理
 
