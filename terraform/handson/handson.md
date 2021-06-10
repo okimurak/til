@@ -230,11 +230,7 @@
     # aws_instance.sandbox[0]:
     resource "aws_instance" "sandbox" {
         ami                          = "ami-785c491f"
-<<<<<<< HEAD
         arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b"
-=======
-        arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b"
->>>>>>> ac74985... Move study memo to til frmo Notion
         associate_public_ip_address  = true
         availability_zone            = "ap-northeast-1a"
         cpu_core_count               = 1
@@ -306,11 +302,7 @@ sandbox から testboxに名称を変えると
       # aws_instance.sandbox[0] will be updated in-place
       ~ resource "aws_instance" "sandbox" {
             ami                          = "ami-785c491f"
-<<<<<<< HEAD
             arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b"
-=======
-            arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b"
->>>>>>> ac74985... Move study memo to til frmo Notion
             associate_public_ip_address  = true
             availability_zone            = "ap-northeast-1a"
             cpu_core_count               = 1
@@ -377,11 +369,7 @@ sandbox から testboxに名称を変えると
       # aws_instance.sandbox[0] will be updated in-place
       ~ resource "aws_instance" "sandbox" {
             ami                          = "ami-785c491f"
-<<<<<<< HEAD
             arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b"
-=======
-            arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b"
->>>>>>> ac74985... Move study memo to til frmo Notion
             associate_public_ip_address  = true
             availability_zone            = "ap-northeast-1a"
             cpu_core_count               = 1
@@ -467,11 +455,7 @@ applyと似た感じ。diffみたいに－で表現されてるね
       # aws_instance.sandbox[0] will be destroyed
       - resource "aws_instance" "sandbox" {
           - ami                          = "ami-785c491f" -> null
-<<<<<<< HEAD
           - arn                          = "arn:aws:ec2:ap-northeast-1:<account id>:instance/i-0d19cafcf3d81212b" -> null
-=======
-          - arn                          = "arn:aws:ec2:ap-northeast-1:936270567736:instance/i-0d19cafcf3d81212b" -> null
->>>>>>> ac74985... Move study memo to til frmo Notion
           - associate_public_ip_address  = true -> null
           - availability_zone            = "ap-northeast-1a" -> null
           - cpu_core_count               = 1 -> null
