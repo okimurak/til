@@ -4,6 +4,8 @@
 
 [プロパティの仕様 - 仕様の形式 - AWS CloudFormation](https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/cfn-resource-specification-format.html#cfn-resource-specification-format-propertytypes) を参照のこと。
 
+各サービスのプロパティは [AWS resource and property types reference - AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) を参照
+
 ## リソースの仕様
 
 [リソース仕様 - 仕様の形式 - AWS CloudFormation](https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/cfn-resource-specification-format.html#cfn-resource-specification-format-resourcetype) を参照のこと。
