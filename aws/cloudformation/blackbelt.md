@@ -1,6 +1,6 @@
 # CloudFormation
 
-AWS リソースの環境構築を、設定ファイルを元に自動化できるサービス
+AWS リソースの環境構築を、設定ファイルを元に自動化できるサービス。
 
 ## 料金
 
@@ -23,7 +23,7 @@ AWS リソースの環境構築を、設定ファイルを元に自動化でき�
 
 - YAML/JSON で記述
 - アップロード
-  - コンソール か CLI, S3 経由
+  - コンソールか CLI, S3 経由
 - スタックの作製
   - IAM リソースが作成されることを承認して作成
 - リソースの作成と管理
@@ -32,7 +32,7 @@ AWS リソースの環境構築を、設定ファイルを元に自動化でき�
 
 Former2 を使うとテンプレートを生成してくれる(公式ではない)
 
-スタックになら、既存 Import も可能
+スタックになら、既存 Import も可能。
 
 ## テンプレート
 
@@ -48,32 +48,26 @@ Former2 を使うとテンプレートを生成してくれる(公式ではな�
 
 ### エディタ
 
-自動補完を使えるツールがよい
-
-なんでもいいって言ってるけど、実質 VSCode と PyCharm がいいのでは
+自動補完を使えるツールがよい。
+なんでもいいって言ってるけど、実質 VSCode と PyCharm がいいのでは。
 
 ### cfn-lint
 
-入力した値の整合性チェックをできるコマンドラインツール
+入力した値の整合性チェックをできるコマンドラインツール。
 
 ### 自動補完
 
-CloudFormation template schema を利用できる
+CloudFormation template schema を利用できる。
 
-VSCode / PyCharm で利用可能
+VSCode / PyCharm で利用可能。
 
 ## テスト
 
 - cfn-lint による厳密なチェック
-
 - TaskCat によるマルチリージョン/アカウントテスト
-
   - 1 つのテンプレートやスタックをテストしたのではわからない問題を検知できる
-
 - cfn-nag によるセキュリティチェック
-
-  - CloudFormation テンプレートから から潜在的なセキュリティの問題を発見できる
-
+  - CloudFormation テンプレートから潜在的なセキュリティの問題を発見できる
 - CloudFormation Guard (202008 現在 Preview)
   - ルールを記述して対象リソースが満たすべき条件を指定する
 
@@ -120,23 +114,26 @@ VSCode / PyCharm で利用可能
 
 ### 既存スタックのリファクタリング
 
-例えばスタックを分割したい。 → リソースインポート/エクスポートを利用する
+例えばスタックを分割したい。 → リソースインポート/エクスポートを利用する。
 
 - リソースインポート
   - Drift Detection に対応したリソースのみ
 
 ### ヘルパースクリプト
 
-スタック内の EC2 インスタンスの構築、変更を行えるようにする
+スタック内の EC2 インスタンスの構築、変更を行えるようにする。
 
 - cfn-init ... Amazon Linux に初期設定ツール。現在は AWS Systems Manager の State Manager の利用推奨
 - cfn-get-metadata ... メタデータ情報を取得するためのスクリプト
 - EC2 ... リソースが正常に作成されたかを CloudFormation に送信するスクリプト
-- cfn-hup ... 作成されたリソースのメタデータの変更を検知してカスタムフックを実行する。EC2 の再起動をせずに CloufFormation の変更時にアプリケーションに設定を適用したいような用途で使う。
+- cfn-hup ... 作成されたリソースのメタデータの変更を検知してカスタムフックを実行する。EC2 の再起動をせずアプリケーションの設定変更を CloudFormation で適用したい時に使う。
 
 ### Dynamic References
 
-動的にデータを参照したいとき。Systems Manager と AWS Secrets Manager に格納されたデータを動的に参照できる
+動的にデータを参照したいときに使う。Systems Manager パラメータストアと AWS Secrets Manager に格納されたデータを動的に参照できる。
+ただし、System Manager パラメータストアの Secure String 型は参照できるリソースが決まっている。
+
+[動的な参照を使用してテンプレート値を指定する - AWS CloudFormation](https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/dynamic-references.html)
 
 ## 参考
 
