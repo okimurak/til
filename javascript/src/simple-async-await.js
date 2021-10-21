@@ -1,3 +1,4 @@
+// Promise よりもネストが浅くなり、キレイに書ける
 
 function timer2Seconds() {
   return new Promise(resolve =>{
