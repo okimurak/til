@@ -6,7 +6,7 @@ Microsoft が開発した JavaScript に追加機能を実装した言語。
 
 ## コンパイルバージョン
 
-以下の JavaScript にコンパイルして出力できる。``tsconfig.json` にコンパイラの動作を定義する。バージョンは利用を想定しているブラウザバージョンで決めるといい。
+以下の JavaScript にコンパイルして出力できる。`tsconfig.json` にコンパイラの動作を定義する。バージョンは利用を想定しているブラウザバージョンで決めるといい。
 
 - ES3
 - ES5
@@ -16,7 +16,7 @@ Microsoft が開発した JavaScript に追加機能を実装した言語。
 - ES2018
 - ESNEXT
 
-ブラウザのか反省を維持しつつ、新しい機能を追加したい場合には [`core-js`](https://www.npmjs.com/package/core-js) といった [Polyfill](https://developer.mozilla.org/ja/docs/Glossary/Polyfill) を使う。
+ブラウザの可搬性を維持しつつ、新しい機能を追加したい場合には [`core-js`](https://www.npmjs.com/package/core-js) といった [Polyfill](https://developer.mozilla.org/ja/docs/Glossary/Polyfill) を使う。
 
 ## 環境構築
 
