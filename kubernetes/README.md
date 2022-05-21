@@ -1,8 +1,8 @@
-# kubernetes
+# Kubernetes
 
-コンテナを中心とした、管理基盤　 k8s と略される
+コンテナを中心とした、管理基盤 k8s と略される
 
-## Officieal
+## Official
 
 - [プロダクショングレードのコンテナ管理基盤 - Kubernetes](https://kubernetes.io/ja/)
 
