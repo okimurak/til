@@ -1,16 +1,29 @@
-## Variable
+# Variable
+
+## Default values
+
+```bash
+# TEST_VAL = null => $HOME が出力
+echo ${TEST_VAL:-$HOME}
+/home/yappo
+
+TEST_VAL=test/hoge/fuga
+# TEST_VAL != null => TEST_VAL が出力
+echo ${TEST_VAL:-$HOME} 
+test/hoge/fuga
+```
 
 ## sed
 
-変数で、sedは下記のように使える
+変数を sed で操作する場合、下記のように使える。
 
-```
+```bash
 hogehoge="hoge"; echo "$hogehoge" | sed -e "s/hoge/fuga/"
 ```
 
-これを下記のようにリファクタリングできる
+上記を下記のようにリファクタリングできる。
 
-```
+```bash
 hogehoge="hoge"; echo "${hogehoge//hoge/fuga}"
 ```
 
