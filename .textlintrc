@@ -1,17 +1,33 @@
 {
   "filters": {},
   "rules": {
+    "common-misspellings": {
+      "ignore": []
+    },
+    
+    "preset-ja-spacing": {
+      "ja-space-between-half-and-full-width": {
+        "space": "always",
+        "exceptPunctuation": true
+      },
+      "ja-space-around-code": {
+        "before": true,
+        "after": true
+      },
+      "ja-no-space-around-parentheses": false
+    },
     "preset-ja-technical-writing": {
       "max-comma": {
         "max": 20
       },
       "max-kanji-continuous-len": {
         "max": 20
-      }
+      },
+      "ja-unnatural-alphabet": true
     },
     "spellcheck-tech-word": true,
-    "ja-space-between-half-and-full-width": {
-      "space": "always"
+    "write-good": {
+      "passive": false
     }
   }
 }
