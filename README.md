@@ -1,7 +1,7 @@
 # go-playground
 
-GO 学習用レポジトリ
+GO 学習用リポジトリ
 
-## やったこと
+## Contents
 
-- Real World HTTP
+- [Real World HTTP](https://www.amazon.co.jp/dp/4873118042)
