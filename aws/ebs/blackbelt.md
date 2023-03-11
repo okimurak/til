@@ -25,7 +25,7 @@ EC2 にアタッチするブロックレベルのストレージサービス
     - ランダムアクセスはだめ
 - HDD
   - こちらもバースト機能あり
-    　- st1 と sc1 で異なる
+     - st1 と sc1 で異なる
   - st1
     - シーケンシャルアクセスに最適
     - ビッグデータ、ETL など
@@ -103,7 +103,7 @@ EBS ボリュームを EC2 インスタンスにアタッチ中もサイズや I
 
 ## Etc
 
-- 複数の EC2 を一つの EBS にアタッチできるようになった
+- 複数の EC2 を1つの EBS にアタッチできるようになった
 - io1 を Nitro ベースのインスタンスを最大 16 台
 
 * [Amazon EBS マルチアタッチを使用した複数のインスタンスへのボリュームのアタッチ - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations)

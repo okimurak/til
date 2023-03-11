@@ -35,16 +35,15 @@ AWS 上でプライベートネットワーク空間を構築
 
 - VPC のネットワーク範囲(CIDR)のアドレスに+2 した IP
 - `169.254.169.253`
-- VPC で回設定を有効化する
-
+- VPC で以下設定を有効化する
   - Enable DNS resolution ... VPC の DNS 機能が使える
-  - Enable DNS hostname ... DNS 名画割当になる
+  - Enable DNS hostname ... DNS 名が割当になる
 
-- Route 53 Resolver for Hybrid Cloud を使うと、オンプレからでも VPC 内の DNS 名 を引ける
+- Route 53 Resolver for Hybrid Cloud を使うと、オンプレからでも VPC 内の DNS 名を引ける
 
 ## Amazon Time Sync Service
 
-NTP サーバ。プライベートネットワークでも利用できる。うるう秒も対策済。`169.254.169.123`を参照する。
+NTP サーバ。プライベートネットワークでも利用できる。うるう秒も対策済。`169.254.169.123` を参照する。
 
 ## オンプレとの接続
 
@@ -63,17 +62,31 @@ NTP サーバ。プライベートネットワークでも利用できる。う�
 - ルートテーブルでルート伝達（プロパゲート）を有効にすると、VGW で受信したルート情報をルートテーブルに自動的に伝達される
   - オンプレのルートが頻繁に更新されるなら設定する
 
+## マネージドプレフィックスリスト
+
+1 つ以上の CIDR ブロックのセット。IPVv4, IPv6 は 1 つのセットに混ぜることができない。
+
+- カスタマーマネージドプレフィックスリスト : 自分で CIDR のセットを作れる。
+- AWS マネージドプレフィックスリスト : AWS のリソースを参照するために使う。CloudFront, DynamoDB, S3, VPC Lattice, Ground Station が使える。
+
+プレフィックスリストは、Organizations の場合、RAM(Resource Access Manager) を使うことで共有できる。
+
+## Egress-Only インターネットゲートウェイ
+
+IPv6 のみで使える。IPv6 はデフォルトでパブリックなので、インターネット上のリソースにインスタンスとの通信を開始させないときに使う。
+
+
 ## Transit Gateway
 
 100 以上 VPC とオンプレミスとの相互接続を簡単に（ルータっぽく動く）
 
 ## Private Link
 
-パブリック IP を使うこと無く、またインターネット全体を横断するトラフィックを必要すること無く、VPC から AWS のサービスにプライベートにアクセス可能
+パブリック IP を使うこと無く、またインターネット全体を横断するトラフィックを必要すること無く、VPC から AWS のサービスへプライベートにアクセス可能
 
 - ゲートウェイ型
   - S3 と DynamoDB
-- インターフェース型
+- インタフェース型
   - 他のサービス
 
 オンプレからも利用できる。DNS 引けない場合は、Route 53 Resolver for Hybrid Cloud を使う
@@ -85,6 +98,13 @@ NTP サーバ。プライベートネットワークでも利用できる。う�
 - AZ ごとに設置するのがベストプラクティス
 - そこそこお値段かかる
   - 代替案としては NAT インスタンスというパターンもあるけど、自分たちで管理必要だよ
+
+## NAT インスタンス
+
+自分で管理が必要な NAT サーバー。コストは NAT ゲートウェイに比べて安く、NAT ゲートウェイより自由度はある（ポート転送や踏み台サーバにできたり）。
+フェイルオーバーにはスクリプトを使う必要がある。
+
+[NAT ゲートウェイと NAT インスタンスの比較 - Amazon Virtual Private Cloud](https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-nat-comparison.html)
 
 ## VPC Peering
 
@@ -122,10 +142,10 @@ JSON/YAML で定義できる
 ## VPC FLow Log
 
 - ネットワークトラフィックをキャプチャして、CloudWatch Logs へ Publish する機能
-- ネットワークインターフェースを送信元、送信先とするトラフィックが対象
+- ネットワークインタフェースを送信元、送信先とするトラフィックが対象
 - SG とネットワーク ACL のルールで Accepted / Reject されたトラフィックログを取得できる
 - キャプチャウィンドウと言われる 10 分間ログを取得する
-- RDS, Redshift, ElasticCache WorkSpaces のネットワークインターフェーストラフィックも取得可
+- RDS, Redshift, ElasticCache WorkSpaces のネットワークインタフェーストラフィックも取得可
 - 追加料金なし
 
 ## Guard Duty
@@ -137,7 +157,7 @@ JSON/YAML で定義できる
 
 ## VPC のリミット
 
-上限緩和申請必要なやつ
+上限緩和申請必要な項目
 
 | リソース                                              | 数  |
 | ----------------------------------------------------- | --- |
@@ -150,6 +170,31 @@ JSON/YAML で定義できる
 | NIF あたりの SG                                       | 5   |
 | VPC あたりのアクティブな VPC ピア雪像 k               | 125 |
 | VPC あたり(仮想プライベートゲートウェイ)の VPN 接続数 | 10  |
+
+
+## その他
+
+### IPv4 アドレスが枯渇したら
+
+セカンダリ CIDR ブロックを追加するか、 VPC を作り直して移行する。
+
+[Amazon VPC の IPv4 アドレス範囲を変更](https://aws.amazon.com/jp/premiumsupport/knowledge-center/vpc-ip-address-range/)
+
+### IPv6 の設定方法
+
+設定には以下が必要
+- IPv6 CIDR ブロックを VPC とサブネットに関連付け
+- IPv6 トラフィックがルーティングされるようにルートテーブルを更新。パブリックサブネットの場合は、サブネットから IGW に全部ルーティングするルートを作成。プライベートサブネットの場合は、サブネットから Egress only インターネットゲートウェイにインターネット経由の IPv6 トラフィックを全部ルーティングするルートを作成
+- IPv6 のルールを含めるように。セキュリティグループを更新する。カスタムネットワーク ACL を作成している場合は、これも変更する。
+- インスタンスタイプを IPv6 をサポートしているものに変える。
+- サブネットの IPv6 CIDR の範囲からインスタンスに IPv6 アドレスを割り当てる。
+- IPv6 を使用するように設定されていない AMI からインスタンスを起動した場合は、手動でインスタンスを設定する。
+
+### プライベートサブネットに外から接続したい。
+
+AWS Site-to-Site VPN を使う。
+
+[プライベートサブネットのみおよび AWS Site-to-Site VPN アクセスを持つ VPC - Amazon Virtual Private Cloud](https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/VPC_Scenario4.html)
 
 ## Reference
 

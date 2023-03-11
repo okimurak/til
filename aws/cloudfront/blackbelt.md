@@ -36,11 +36,22 @@ CloudFront DNS がエッジサーバを返して、エッジサーバの情報�
 
 - ドメインごとに割り当てられる CloudFront の設定
 - コンソールか API で作成可能
+- 以下コンテンツを供給できる
+  - HTTP や HTTPS を使用した動的なダウンロードコンテンツ(html, .css, .js など)
+  - Apple HTTP Live Streaming(HLS), Microsoft Smooth Streaming などのビデオオンデマンド
+  - ライブイベント(AWS Media Services によるライブ配信とか)
+- オリジンには以下を設定できる。(最大 25 オリジン)
+  - S3
+  - Elemental Media Package チャネル
+  - Elemental MediaStore コンテナ
+  - ELB
+  - HTTP サーバ
 - 40Gbps か 100000RPS、超える場合は上限緩和申請
-- HTTP/1.0, HTTP/1.1, HTTP/2, WebSocket 対応
+- HTTP/1.0, HTTP/1.1, HTTP/2, HTTP/3, WebSocket 対応
   - Origin はインターネット経由必須
 - IPv6 対応
-- デフォルトでは `xxxx.cloudfront.net`がディストリビューションのドメイン名
+- HTTP or HTTPS で接続させたい場合、[]"Match viewer"](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginProtocolPolicy) を使う
+- デフォルトでは `xxxx.cloudfront.net` がディストリビューションのドメイン名
   - CNAME エイリアスを利用して代替ドメイン名の指定可能
     - 有効な SSL/TLS 証明書の対象であることが必要
   - CNAME エイリアスのワイルドカード指定もサポート
@@ -67,9 +78,13 @@ CloudFront DNS がエッジサーバを返して、エッジサーバの情報�
 
 コンテンツごとに無効化(Invalidation)できる。最大 3000 個まで 1 分程度で、ワイルドカード指定もサポート
 
+### キャッシュ戦略
+
+キャッシュは「オリジンが返すオブジェクトのバージョンが変わるパラメータ」だけに基づいてキャッシュする。([参考](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/QueryStringParameters.html))
+
 ### 動的コンテンツ
 
-- オリジンサーバに対して、Header, Cookie, Query Strings 情報をフォワードすることで動的ページにも配信することができる
+- オリジンサーバに対して、Header, Cookie, Query Strings 情報をフォワードすることで動的ページにも配信できる。
   - Header
     - 必要最低限のヘッダーを指定する
   - Cookie
@@ -115,6 +130,8 @@ S3 と組み合わせて、4XX や 5XX 発生したときに S3 からコンテ�
 地域情報をもとにエッジでアクセス判定
 制限されている場合は 403
 
+サードパーティーの位置情報サービスも使える。(サードパーティーの位置情報サービスに問い合わせ、判断する実装が必要)
+
 ### 署名付き URL/Cookie
 
 プライベートなコンテンツを配信可能
@@ -125,8 +142,16 @@ S3 と組み合わせて、4XX や 5XX 発生したときに S3 からコンテ�
 
 ### オリジンサーバの保護
 
-- S3 の場合
-  - OAI
+- S3
+  - CloudFront からのみ S3 にアクセスできるように設定する。
+    - 意図しない CloudFront ディストリビューションからアクセスすることも防ぐことができる。
+  - OAI(オブジェクトアクセスアイデンティティ)
+  - OAC(オブジェクトアクセスコントロール)
+    - 現在はこちらに移行を勧めている。
+  - Web サイトエンドポイントを設定した S3 では使えないのでカスタムオリジンとして設定する。
+  - 署名付き URL/Cookie とも連携できる。
+- AWS Elemental MediaStore
+  - S3 と同様
 - カスタムオリジン
   - オリジンカスタムヘッダーを利用
     - ALB のホストヘッダーのルーティングルールでチェック可能
@@ -138,9 +163,9 @@ WebACL を CloudFront ディストリビューションに適用できる
 
 XSS, GEO 制限など。ブロック時は 403 を返す
 
-### Report & Loging
+### Report & Logging
 
-CLoudfront の傾向分析として利用できるパラメータ
+CLoudFront の傾向分析として利用できるパラメータ
 
 - Cache Statics
   - 全リクエストとかヒット率とか Http ステータス
@@ -151,13 +176,13 @@ CLoudfront の傾向分析として利用できるパラメータ
 - Usage
   - ディストリビューション、アクセス元リージョンごとの
     - リクエスト数
-- Viewrs
+- Viewers
   - デバイス、ブラウザ、OS など
 
-アクセスログも取得可能、S3 に出力できるがラグが有る（26 種類）
+アクセスログも取得可能、S3 に出力できるがラグが有る（26 種類）。
 -> Athena や QuickSight に利用できる(傾向分析)
 
-### Alart
+### Alert
 
 CloudWatch(バージニアリージョン)に通知
 
@@ -171,19 +196,20 @@ S3 のアップロードに連動した Lambda から Invalidation を発行し�
 
 ## Lambda@Edge
 
-ざっくりは Clout Front + Lambda
-
-バージニアでマスタを作成する。
-作成されたメトリクスは各エッジリージョン毎に作成されることに注意
+- ざっくりは CloudFront + Lambda
+- バージニア北部リージョンでマスタを作成し、Lambda 関数を他のリージョンにレプリケートする。
+- Node.js か Python
+- 1 秒に数個 - 数千のリクエストまではスケーリングする。
+- 作成されたメトリクスは各エッジリージョン毎に作成されることに注意
 
 ### イベント
 
 以下で設定可能
 
-- ビューワリクエスト
+- ビューアリクエスト
 - オリジンリクエスト
 - オリジンレスポンス
-- ビューワレスポンス
+- ビューアレスポンス
 
 ### ユースケース
 

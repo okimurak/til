@@ -20,9 +20,18 @@ Intel Xeon, AMD, AWS Graviton <- is 何
 インスタンスタイプ
 ```
 
+ざっくり以下 5 つに分けられる。
+
+- 汎用
+- コンピューティングの最適化
+- メモリ最適化
+- ストレージの最適化
+- 高速コンピューティング : 機械学習用、GPU はここ
+
+
 ### インスタンスファミリー
 
-メモリ、IO、CPU クロックなどでインスタンスファミリーを分けている
+メモリ、I/O、CPU クロックなどでインスタンスファミリーを分けている
 
 ### インスタンス世代
 
@@ -197,17 +206,43 @@ EC2, EBS ボリュームは 1 秒単位の課金 (表記は 1 時間単位のま
 - オンデマンドインスタンス
   - 初期費用なしで従量課金
 - リザーブドインスタンス
-  - 1 年か 3 年のキャパシティ予約により、最大 75%OFF
+  - 1 年か 3 年のキャパシティ予約により、最大 75％OFF
   - スケジュールドリザーブドインスタンス
-    - 日次、週次、月次で指定した時間帯のみのキャパシティ予約で 5-10%引き (1 年間)
+    - 日次、週次、月次で指定した時間帯のみのキャパシティ予約で 5-10％引き (1 年間)
 - スポットインスタンス
-  - 未使用キャパシティを時価で提供。最大 90%の割引で利用できる
+  - 未使用キャパシティを時価で提供。最大 90％の割引で利用できる
   - ただし他の人に取られる可能性
 - 専用インスタンス
   - インスタンス実行用物理ホスト単位
 - ハードウェア専有インスタンス
   - シングルテナント
 
+## Linux
+
+### EC2Rescue for Linux
+
+一般的な問題およびログの収集ができる。syslog およびパッケージマネージャーログの収集、リソース使用状況データの収集、問題のある既知のカーネルパラメーターと一般的な OpenSSH の問題の診断および修復など。Systems Manager Automation runbook の AWSSupport-TroubleshootSSH ランブックを使って、EC2Rescue for Linux のインストールおよび Linux マシンへの SSH 接続を診断・修正ができる。
+
+[使用アイテム Linux 用 EC2Rescue - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/Linux-Server-EC2Rescue.html)
+
+
+## Windows
+
+### アップグレード
+
+OS をアップグレードするために、インプレースアップグレードと並列アップグレードがある。
+
+- インプレースアップグレードは個人の設定ファイルは保持する。
+- 並列アップグレードは元のインスタンスの設定、構成、データを取り込んで新しい OS に移行する。アップグレードが完了するまでは元の EC2 インスタンスを一時的なものとして使用される。
+
+[Amazon EC2 Windows インスタンスのより新しいバージョンの Windows Server へのアップグレード - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/WindowsGuide/serverupgrade.html)
+
+
+### EC2Rescue for Windows Server
+
+Windows インスタンスの問題診断とログ取得ができる。Systems Manager Automation runbook の AWSSupport-ExecuteEC2Rescue ランブックを使うこともできる。
+
+[使用アイテム EC2Rescue for Windows Server - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/WindowsGuide/Windows-Server-EC2Rescue.html)
 ## Reference
 
 - [【AWS Black Belt Online Seminar】Amazon EC2 - YouTube](https://www.youtube.com/watch?v=P5zX4DdlYOE&feature=youtu.be)

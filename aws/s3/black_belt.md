@@ -1,4 +1,4 @@
-# Simple Storege Service (S3)
+# Simple Storage Service (S3)
 
 - S3 はオブジェクトを格納するためのストレージ
   - 階層構造ではない（prefix を使って、そう見せてる）
@@ -11,7 +11,7 @@
 
 IA はアクセスが頻繁なデータ用
 
-- STANDARD ... 複数 AZ にデータを複製 (耐久性 99.9999999999 % の SLA)
+- STANDARD ... 複数 AZ にデータを複製 (耐久性 99.9999999999 ％ の SLA)
   - 頻繁にアクセスされるデータ
 - INTELLIGENT_TIERING ... 低頻度アクセス層と高頻度アクセス層を自動で行き来
   - 未知のアクセスパターンのデータに使える
@@ -20,17 +20,17 @@ IA はアクセスが頻繁なデータ用
 - ONEZONE_IA ... 1 つの AZ に格納。大災害ではサヨウナラ
   - データが再作成できる場合や、クロスリージョンレプリケーション（CRR)設定時のオブジェクトレプリカで使用
 - S3 Glacier ... 安価なストレージ。90 日の保存必要。取り出しに時間かかる
-- S3 Glacier Deep Achive ... Glacier よりも安価。取り出しにとても時間かかる(12 時間~48 時間)
+- S3 Glacier Deep Archive ... Glacier よりも安価。取り出しにとても時間かかる(12 時間~48 時間)
 - 低冗長化ストレージ(RRS) ... 頻繁にアクセスされる重要度が低いデータ。非推奨
 ### 設定
 
-PUT, Post Object, Initiate Multipart Upload API を使う`x-amz-strage-class`リクエストヘッダーを追加して、ストレージクラスを指定する。指定しないと、STANDARD になる
+PUT, Post Object, Initiate Multipart Upload API を使う `x-amz-strage-class` リクエストヘッダーを追加して、ストレージクラスを指定する。指定しないと、STANDARD になる
 
 [Amazon S3 ストレージクラス - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/storage-class-intro.html)
 
 ## S3 の操作
 
-知らない操作だけ
+その他の操作だけ
 
 - HEAD ... メタデータを取得
 - RESTORE ... アーカイブされたオブジェクトを S3 に取り出す
@@ -53,18 +53,20 @@ PUT, Post Object, Initiate Multipart Upload API を使う`x-amz-strage-class`リ
 
 オブジェクトごとに一定期間だけアクセスできる URL。URL 生成した IAM ユーザロールの権限が用いられる
 
-## 署名つき Cookie
+## 署名付き Cookie
 
 現在の URL を変更したくない場合や、複数の制限つきファイルのアクセスを提供する場合に使う
 
 ## Web サイトホスティング
 
 https は使えないので、その場合には CloudFront 経由で配信しようね。
+エラードキュメントのバケットも設定できるし、アクセスログ(保存先は S3) も設定して記録できる。
 
 ## バージョニング
 
 バケットに対して設定。バージョニングで保管している分も課金対象。
-ライフサイクルを使って古いバージョンを削除するのがオススメ
+ライフサイクルを使って古いバージョンを削除するのがオススメ。
+バージョンを有効化する前のオブジェクトのバージョンは null になる。
 
 ## WORM 機能
 
@@ -74,7 +76,7 @@ Write Once Read Many（Object Lock 機能）
 
 - コンプライアンスオード
   - root ですら削除 or 無効化できない
-  - Cohasset Associates による SEC 17a-4 アセスメント済み
+  - Cohasset Associates による SEC Rule 17a-4(f)、FINRA Rule 4511 および CFTC Regulation 1.31 のアセスメント済み
 - ガバナンスモード
   - 特別な権限で WORK 保護されたオブジェクトの削除が可能
   - コンプライアンスモードに変更可能
@@ -95,9 +97,9 @@ Write Once Read Many（Object Lock 機能）
 
 から戻すときの通知をしてくれる
 
-- 迅速(Expedited) ... 1~5 分以内 (DEEP ACHIVE は 利用不可)
-- 標準(Standard) ... 3~5 時間 (DEEP ACHIVE は 12 時間以内)
-- 大容量(Bulk) ... 5~12 時間 (DEEP ACHIVE は 48 時間以内)
+- 迅速(Expedited) ... 1~5 分以内 (DEEP ARCHIVE は利用不可)
+- 標準(Standard) ... 3~5 時間 (DEEP ARCHIVE は 12 時間以内)
+- 大容量(Bulk) ... 5~12 時間 (DEEP ARCHIVE は 48 時間以内)
 
 ## S3 Analytics
 
@@ -113,6 +115,12 @@ Write Once Read Many（Object Lock 機能）
 
 [Amazon S3 分析 – ストレージクラス分析 - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/analytics-storage-class.html)
 
+## S3 Storage Lens
+
+オブジェクトストレージの使用状況を可視化する。Organizations と連携し、組織全体のストレージの使用量インサイトを作成できる。
+
+[Amazon S3 ストレージレンズを使用してストレージのアクティビティと使用状況を評価する - Amazon Simple Storage Service](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage_lens.html)
+
 ## インベントリ
 
 オブジェクト一覧を CSV 形式で取得できる
@@ -126,9 +134,9 @@ Write Once Read Many（Object Lock 機能）
 ## 暗号化
 
 - CSE (Client Side Encryption) ... クライアント側で行う暗号化
-- SSE-S3 ... S3 側で行う暗号化。キー管理も S3. AWS-256 を使用している
-- SSE-C ... S3 側で行う暗号化。キー管理はユーザ(自分で準備する必要ある）
-
+- SSE-S3 ... S3 側で行う暗号化。キー管理も S3. AWS-256 を使用している。2023/01/05 以降自動で適用される。
+- SSE-C ... S3 側で行う暗号化。キー管理はユーザ(自分で準備する必要がある)
+- サーバー側の暗号化ではオブジェクトデータのみ暗号化し、メタデータは暗号化されない([参考](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/UsingServerSideEncryption.html))
 ## パフォーマンス最適化
 
 - 大きなファイルを快適にダウンロード、アップロードできる
@@ -138,13 +146,13 @@ Write Once Read Many（Object Lock 機能）
 
 ## S3 Transfer Acceleration
 
-149 の AWS エッジネットワークから、S3 との転送を実現。利用者は自動的に最短のエッジネットワークに接続される
+149 の AWS エッジネットワークを利用して、S3 との転送を実現。利用者は自動的に最短のエッジネットワークに接続される
 
 バケットに対して、Acceleration を有効化する
 
 ## Private
 
-- Direcct Connect 経由
+- Direct Connect 経由
   - private VIF を使う場合
     - プロキシサーバ(EC2)と S3 VPC EndPoint を使う
   - public VIF を使う場合
