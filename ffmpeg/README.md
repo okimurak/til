@@ -22,6 +22,12 @@ ffmpeg --codecs
 ffmpeg -i <input video file> -c:v <codec> -vprofile high -vlevel 3.1 -crf <0-51> -c:a <audio codec> <output file name>.mp4
 ```
 
+### flac -> m4a Encoding
+
+```cmd
+ffmpeg -i <input music file>.flac -acodec alac -vcodec copy <output file name>.m4a
+```
+
 - ctf : 品質 (default 22, 0-51 まで)
 
 ### concat
