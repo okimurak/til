@@ -104,7 +104,7 @@ export NODE_PORT=$(kubectl get <Service Name> -o go-template='{{(index .spec.por
 
 ## kubectl
 
-kubenetes とのインタフェースツール `kubectl <command>`
+kubernetes とのインタフェースツール `kubectl <command>`
 
 ### command
 
