@@ -1,11 +1,13 @@
-# alphineベースのタイムゾーン変更
+# alphine ベースのタイムゾーン変更
 
 以下を追加する
 
+```dockerfile
     RUN apk add --update --no-cache tzdata && \
         cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
         echo "Asia/Tokyo" > /etc/timezone && \
         apk del tzdata
+```
 
 ## 参考
 
