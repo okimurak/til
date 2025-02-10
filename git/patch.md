@@ -3,13 +3,14 @@
 あまりやることはないけど、gitの情報からパッチを作成できる
 
 ## 作成方法
-```
+
+```bash
 git diff > diff.patch
 ```
 
 ## patchの適用方法
 
-```
+```bash
 patch -p1 < diff.patch
 ```
 

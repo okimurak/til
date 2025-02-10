@@ -2,7 +2,7 @@
 
 ## ブランチツリーを表示する
 
-```
+```bash
 git log --graph
 ```
 
@@ -10,7 +10,7 @@ git log --graph
 
 `--pretty`オプションを使う
 
-```
+```bash
 git log --pretty=oneline
 ```
 

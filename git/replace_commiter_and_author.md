@@ -2,7 +2,7 @@
 
 ## 全置換
 
-```
+```bash
 git filter-branch -f --env-filter \ 
  "GIT_COMMITTER_NAME='New Author'; \
   GIT_AUTHOR_NAME='New Author'; \
@@ -14,7 +14,8 @@ HEAD
 ## 条件付き
 
 ifを付与
-```
+
+```bash
 git filter-branch --commit-filter ' 
   if [ "$GIT_COMMITTER_EMAIL" = "target" ];
     then

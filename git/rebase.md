@@ -6,7 +6,7 @@
 
 masterブランチの内容を取り込む場合
 
-```
+```bash
 git rebase master
 ```
 
@@ -15,7 +15,7 @@ git rebase master
 
 ## 過去のコミットを操作する
 
-```
+```bash
 git rebase -i HEAD~<数字> # 今のコミットからどれだけさかのぼって編集するか
 ```
 

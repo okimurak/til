@@ -24,7 +24,6 @@ git fetch b_repo
 3. リポジトリの内容を merge する。
 
 ```bash
-
 git merge --allow-unrelated-histories b_repo/master
 
 ## merge 先のディレクトリを指定する場合は、-X subtree を使う
