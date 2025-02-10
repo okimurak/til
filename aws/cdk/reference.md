@@ -1,6 +1,6 @@
 # Reference
 
-## Official
+## Document
 
 - [aws/aws-cdk: The AWS Cloud Development Kit is a framework for defining cloud infrastructure in code](https://github.com/aws/aws-cdk)
 - [What is the AWS CDK? - AWS Cloud Development Kit (AWS CDK) v2](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
