@@ -228,7 +228,7 @@ kubernetes とのインタフェースツール `kubectl <command>`
   - `label <Resource> <Resource name> <Label(Key=Value)`
   - `delete <Resource>` … リソースを削除する
   - `scale <Deoloyment> --replicas=<num>` … デプロイメントをスケールさせる
-  - `set image <Deoloyment Name> <Deployment Name>=<ImageName>` ... デプロイのイメージを置き換える。ローリングアップデートされる。
+  - `set image <Deoloyment Name> <Deployment Name>=<ImageName>` ... デプロイのイメージを置き換える。ローリングアップデートされる。 Server-side apply.
 
     ```bash
     $ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
