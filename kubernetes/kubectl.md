@@ -4,6 +4,8 @@ Kubernetest API を使ったクラスターのコントロールと通信する�
 
 [コマンドラインツール(kubectl) | Kubernetes](https://kubernetes.io/ja/docs/reference/kubectl/)
 
+[Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-)
+
 ## Name Space
 
 基本的にはコマンドに `--namespace <Name space名>` を付与して、対象の Name Space のオブジェクトを操作する。
@@ -22,7 +24,19 @@ Kubernetest API を使ったクラスターのコントロールと通信する�
 
 ```bash
 kubectl get <オブジェクトの種類> (--namespace <Name space名>)
+
+# より詳細な Node の情報を表示
+kubectl get node -o wide
+
+# YAML 形式で Pod の情報を表示
+kubectl get pods -o yaml
 ```
+
+他にも Custom Column や JSON, json-path, Go-template の形式で出力もできる
+
+[コマンドラインツール(kubectl) | Kubernetes](https://kubernetes.io/ja/docs/reference/kubectl/#%E5%87%BA%E5%8A%9B%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3)
+
+[Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get)
 
 ### describe
 
