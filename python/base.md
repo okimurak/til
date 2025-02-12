@@ -22,35 +22,6 @@ for i in range(2, 10):
 9
 ```
 
-- enumerate ... リストの index を同時に取得できる
-
-```python
-for i, fruit in enumerate(['apple', 'grape', 'orange']):
-  print(i, fruit)
-```
-
-```text
-0 apple
-1 grape
-2 orange
-```
-
-- zip ... 複数の配列の同じ index の要素をまとめて扱うことができる
-
-```python
-days = ['Mon', 'Tue', 'Wed']
-fruit = ['apple', 'grape', 'orange']
-drinks = ['coffee', 'tea', 'beer']
-
-for day, fruit, drink in zip(days, fruit, drinks):
-  print(day, fruit, drink)
-```
-
-```text
-Mon apple coffee
-Tue grape tea
-Wed orange beer
-```
 
 ## Params
 
@@ -225,7 +196,7 @@ class Hello(object):
         ...
 ```
 
-### Extend
+### Inherited
 
 ```python
 class Tool:

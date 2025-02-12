@@ -1,9 +1,8 @@
 # Request
 
-
 ## How to use ? 
 
-```
+```python
 import requests
 
 headers =  {
