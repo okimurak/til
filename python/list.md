@@ -16,7 +16,7 @@
 
 ### copy
 
-シャローコピー(shallow copy) を返す。 a[:] と透過
+シャローコピー(shallow copy) を返す。 a[:] と等価
 
 ```python
 >>> print(b)
