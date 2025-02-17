@@ -1,10 +1,10 @@
 const measureElapsetime = require('./measureTime');
-const bubleSort = require('./bublesort');
+const bubbleSort = require('./bubblesort');
 const quickSort = require('./quicksort');
 const margeSort = require('./margesort');
 
 const dataNum = 10000;
 
-measureElapsetime(bubleSort, dataNum, 'BubleSort');
+measureElapsetime(bubbleSort, dataNum, 'BubbleSort');
 measureElapsetime(quickSort, dataNum, 'QuickSort');
-measureElapsetime(margeSort, dataNum, 'margeSort');
+measureElapsetime(margeSort, dataNum, 'MargeSort');

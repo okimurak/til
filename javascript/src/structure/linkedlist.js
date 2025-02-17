@@ -29,7 +29,7 @@ class LinkedList {
   }
 
   unshift(value){
-    const node = new LiksListNode(value);
+    const node = new LinkedListNode(value);
     node.next = this.head;
     this.head = node;
   }
