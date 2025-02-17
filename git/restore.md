@@ -3,7 +3,7 @@
 staged file を unstaced にできる。（無限に忘れるので）
 
 ```bash
-git restore <ファイル or ディレクトリ>
+git restore --staged <ファイル or ディレクトリ>
 ```
 
 ## Reference
