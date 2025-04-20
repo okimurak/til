@@ -20,6 +20,6 @@ Japanese
 
 ## License
 
-© 2020 okimurak
+© 2025 okimurak
 
 This repository is licensed under the MIT license. see `LICENSE` for details.
