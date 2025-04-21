@@ -32,10 +32,9 @@ function quickSort(array, start = 0, end = array.length - 1){
     if(x > y){
       return y < z ? y :
              z < x ? x : z;
-    } else {
-      return z < y ? y :
-             x < z ? x : z;
     }
+    return z < y ? y :
+           x < z ? x : z;
   }
 }
 
