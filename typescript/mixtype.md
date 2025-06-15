@@ -11,11 +11,35 @@ const divs = ["tig", "sig"] // 後ろの型が明確なら省略可能
 
 ### タプル
 
-配列の要素ごとに型が違う配列。名前でインデックスにアクセスできないので、余り使うことはないだろう。
+配列の要素ごとに型が違う配列。~~名前でインデックスにアクセスできない~~ので、あまり使うことはないだろう。
 
 ```typescript
 const product: [number, string] = [1, "Apple pen"]
 ```
+
+下記のようにインデックスでアクセスできる。
+
+```typescript
+const tuple: [string, number] = ["hello", 20];
+
+// hello
+console.log(tuple[0]);
+// 20
+console.log(tuple[1]);
+
+// 複数の値を返したいとき便利
+// 以下だと直列処理になる(3s + 5s = 8s)
+const str: string = await takes3Seconds();
+const num: number = await takes5Seconds();
+
+// 以下のように並列で処理したいときに使える
+const tuple: [string, number] = await Promise.all([
+  takes3Seconds();
+  takes5Seconds();
+])
+```
+
+[タプル (tuple) | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/values-types-variables/tuple)
 
 ### 分割代入
 

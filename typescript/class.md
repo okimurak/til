@@ -15,7 +15,7 @@ class SmallAnimal {
   // static 宣言
   static staticVariable = "こんにちは"
 
-  // readonly
+  // readonly : ただし再帰的に定義できない。
   readonly size: number;
 
   // コンストラクタ (省略可能)
@@ -27,11 +27,11 @@ class SmallAnimal {
 
   // メソッド
   walk() {
-    console.log(`${} は歩くよ`)
+    console.log(`${this.animalType} は歩くよ`)
   }
 
   discover(place: string) {
-    // private プロパティ二セット
+    // private プロパティにセット
     this.place = place;
   }
 
@@ -48,6 +48,11 @@ class SmallAnimal {
     console.log(SmallAnimal.staticVariable);
     // これは参照不可
     // console.log(this.staticVariable);
+  }
+
+  readonly hogehoge: {
+    fugafuga : number;         // SmallAnimal.hogehoge.fugafuga = 1; これは上書きできる。
+    readonly tokotoko: number; // SmallAnimal.hogehoge.tokotoko = 1; これは上書きできない。つまり子にもつける必要がある。(ReadOnly<T> を使うことも検討しよう) 
   }
 }
 ```

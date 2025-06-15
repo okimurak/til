@@ -43,12 +43,67 @@ const userDiff: Partial<User> = {
 ```
 
 - `Particial<T>` : 要素が省略可能になった型
+
+```typescript
+type Person = {
+  name: string;
+  age : number;
+}
+
+type ParticialPerson = Particial<Person>;
+/*
+以下に変化する
+type ParticialPerson = {
+  name?: string;
+  age? : number;
+}
+*/
+```
+
 - `Readonly<T>` : 要素が readonly になった型
-- `Required<T>` : すべての省略可能な要素を必須に直した方
+
+```typescript
+type Person = {
+  name: string;
+  age : number;
+}
+
+type ReadOnlyPerson = ReadOnly<Person>;
+/*
+以下に変化する
+type ReadOnlyPerson = {
+  readonly name: string;
+  readonly : number;
+}
+*/
+
+const ken: ReadOnlyPerson = {"健", 10};
+// 以下出来ない
+ken.10 = 20;
+```
+
+- `Required<T>` : すべての省略可能な要素を必須に直した型
+
+```typescript
+type Person = {
+  name: string;
+  age? : number;
+}
+
+
+type RequiredPerson = Required<Person>;
+/*
+以下に変化する
+type RequiredPerson = {
+  name: string;
+  age : number;
+}
+*/
+```
 
 ### オブジェクトと属性名に対するユーティリティ型
 
-`T` 以外に、`K` としてプロパティの文字列の合併型を持ち、新しいオブジェクトの方を作成する。
+`T` 以外に、`K` としてプロパティの文字列の合併型を持ち、新しいオブジェクトの型を作成する。
 
 ```typescript
 const viewItems: Pick<User, "name" | "gender"> = {
@@ -58,6 +113,19 @@ const viewItems: Pick<User, "name" | "gender"> = {
 ```
 
 - `Record<K, T>` : `T` を子供の要素の持つ `Map` 型のようなデータ型 (`K` がキー)を作成
+
+```typescript
+type ThreeLetterRecord = Record<"one", | "two" | "three", string>;
+/*
+
+type ThreeLetterRecord = {
+  one: string;
+  two: string;
+  three: string;
+}
+*/
+```
+
 - `Pick<T, K>` : `T` の中の特定のキー `K` だけを持つ型を作成
 - `Omit<T, K>` : `T` の中の特定のキー `K` だけを持たない型を作成
 
@@ -75,9 +143,25 @@ cont year: NonNullable<string | number | undefined> = "令和";
 
 ### 関数のユーティリティ型
 
-関数を渡すと、その返り値の方を返すユーティリティ型。
+- `ReturnType<T>` : 関数を渡すと、その返り値の型を返すユーティリティ型。
 
-- `ReturnType<T>`
+```typescript
+function hogehogeFunc(value: number): string {
+  return `${value}`;
+}
+
+type HogeHogeFuncReturnType = ReturnType<typeof hogehogeFunc>;
+// type HogeHogeFuncReturnType = string
+```
+
+- `Awaited<T>` : Promise の戻り値の型を返す。
+
+```typescript
+const value = Promise.resolve("data");
+
+type Data = Awaited<type of value>;
+// type Data = string;
+```
 
 ### クラスに対するユーティリティ型
 
@@ -86,7 +170,23 @@ cont year: NonNullable<string | number | undefined> = "令和";
 - `ThisType<T>` : `this` が何を表すのかを外挿することを表現するユーティリティ型。`--noImplictThis` がないと動作しない。
 - `InstanceType<T>` : `IntanceType<typeof C>` が `C` を返す。 `abstract new (...args: any) => any` のコンストラクタを満たす必要がある。
 
+
+### インデックスアクセス型
+
+型のプロパティを取得できる。
+
+```typescript
+type Monster = {
+  name = string;
+  level = number;
+}
+
+type MonsterName = Monster[name];
+// type MonsterName = string;
+```
+
 ## 参考
 
 - [ジェネリクス — 仕事ですぐに使える TypeScript ドキュメント](https://future-architect.github.io/typescript-guide/generics.html)
 - [TypeScript: Documentation - Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+- [TypeScript入門『サバイバルTypeScript』〜実務で使うなら最低限ここだけはおさえておきたいこと〜](https://typescriptbook.jp/)
