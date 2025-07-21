@@ -224,6 +224,18 @@ improvePrint(valueB);
 improvePrint(valueC);
 ```
 
+## 型強制
+
+そういうものとして覚えるしか無い
+
+```javascript
+const one = "1";
+console.log(one - 1); // => 0  (1 - 1) 左辺の "1" が 1 に変換される。
+console.log(one + 1); // => "11" ("1" + "1") 右辺の 1 が "1" に変換される。
+```
+
+[型強制 (type coercion) | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/values-types-variables/type-coercion)
+
 ## 参考
 
 [変数と宣言 · JavaScript Primer #jsprimer](https://jsprimer.net/basic/variables/)
