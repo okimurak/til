@@ -100,12 +100,17 @@ for (const [i, value] of iterable.entries()) {
 
 ### Readonly 用配列
 
-TypeScript では型の前に `readonly` を付与するか、リテラルの後ろに `as const` をつける。readonly な変数や引数だけに渡すことができる。
+TypeScript では型の前に `readonly` を付与する、`ReadonlyArray<T>` を使う、リテラルの後ろに `as const` をつける。readonly な変数や引数だけに渡すことができる。
 
 ```typescript
-const readOnlyArray: readonly number[] = [1, 2, 3]
+const readOnlyArray: readonly number[] = [1, 2, 3];
+const nums: ReadonlyArray<number>  = [1, 2, 3];
 const roArray: number[] = [1, 2, 3] as const
 ```
+
+これらの書き方は好み。また、`push`, `pop` メソッドが無い。
+
+[読み取り専用の配列 (readonly array) | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/values-types-variables/array/readonly-array)
 
 ### 特殊な配列っぽいオブジェクト
 

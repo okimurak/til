@@ -46,3 +46,19 @@ function onSave() {
   }
 }
 ```
+
+## 余剰プロパティチェック
+
+オブジェクトの型に存在しないプロパティを持つオブジェクトの代入を禁止する。
+
+オブジェクトリテラルだけ検査するが、変数代入は検査しない。
+
+```typescript
+let onlyX: {x: number};
+
+onlyX = { x : 1 }; // OK
+onlyY = { x : 1, y : 2 }; // NG
+
+const xy = { x : 1, y : 2 };
+onlyX = xy;// OK
+```
