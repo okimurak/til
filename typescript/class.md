@@ -124,15 +124,80 @@ class Pikachu extends Monster {
 
 ```typescript
 interface Monster {
-  skill()
+  skill();
 }
 
 class Pikachu implements Monster {
   skill() {
     console.log("でんきショック を くりだした！")
-  }
+  };
 }
 ```
+
+フィールドも実装できる。
+
+```typescript
+interface EvolvableMonster {
+  evolutionMonsterId: number;
+}
+
+class Charmander implements FireMonster {
+  evolutionMonsterId: 5;
+}
+```
+
+継承もフィールドの追加もできる。
+
+```typescript
+interface Monster {
+  id: number | undefined;
+  skill();
+}
+
+interface FireMonster {
+  id: number;
+  elements: "Fire";
+  skill();
+}
+```
+
+JavaScript には無い機能なので、コンパイルすると消される。
+
+[インターフェース (interface) | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/object-oriented/interface)
+
+
+### オープンエンドと宣言マージ
+
+複数同じインターフェースを定義できる。重複にはならない。これをオープンエンドという。
+
+```typescript
+interface Monster {
+  id: number | undefined;
+}
+
+interface Monster {
+  name: string | undefined;
+}
+```
+
+これは以下と等価となり、マージされる。これを宣言マージという。
+
+```typescript
+interface Monster {
+  id: number | undefined;
+  name: string | undefined;
+}
+```
+
+TypeScript の Array インターフェースでは、このオープンエンドと宣言マージを使ってうまく実装されているらしい。
+
+JavaScript のアップデート毎で追加されるメソッドを、そのメソッドだけをインターフェースとした Array インターフェースが実装される。
+
+[オープンエンドと宣言マージ (open-ended and declaration merging) | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/object-oriented/interface/open-ended-and-declaration-merging)
+
+## 型判定
+
+インターフェースには `instanceof` が使えないので、型ガード関数を使おう。
 
 ## デコレータ
 
