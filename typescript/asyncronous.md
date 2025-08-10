@@ -112,7 +112,7 @@ await Promise.all(iterable.map(async (value) => doSomething(value)))
 
 ## Promise.allSettled()
 
-Promise の結果が履行、拒否されるにかかわらず、待ち受ける。EC2020 で追加。
+Promise の結果が履行、拒否されるにかかわらず、待ち受ける。ES2020 で追加。
 
 戻り値はユニオン型で返却される。
 
@@ -122,7 +122,7 @@ function request1(): Promise<number> {
 }
 
 function request2(): Promise<number> {
-  return Promise.reject(new Error("Failed));
+  return Promise.reject(new Error("Failed"));
 }
 
 Promise.allSettled([request1(), request2()]).then((values) =>{
