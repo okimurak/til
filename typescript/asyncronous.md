@@ -125,20 +125,20 @@ function request2(): Promise<number> {
   return Promise.reject(new Error("Failed"));
 }
 
-Promise.allSettled([request1(), request2()]).then((values) =>{
+Promise.([request1(), request2()]).then((values) =>{
   console.log(values);
   // { status: "fulfilled", value: 1}, { status: "rejected", reason: {}}
 })
 ```
 
+## Promise.any()
 
-## Promise.race()
+最初に履行された Promise を返す。
 
-最初に返却された Promise を返す。
 
 ```typescript
 function request1(): Promise<number> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(1);
     }, 4000)
@@ -146,7 +146,7 @@ function request1(): Promise<number> {
 }
 
 function request2(): Promise<number> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(2);
     }, 2000)
@@ -154,7 +154,47 @@ function request2(): Promise<number> {
 }
 
 function request3(): Promise<number> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error("Failed"))
+    }, 1000)
+  });
+}
+
+Promise.any([request1(), request2(), request3()]).then((num) =>{
+  console.log(num);
+}).catch(e) => {
+  console.log(e.message);
+}
+
+// 2
+// 最初に解決するのは request3 だが reject なので無視。次に request2 なのでその結果が出力される。
+```
+
+
+## Promise.race()
+
+最初に返却(reject 含む)された Promise を返す。
+
+```typescript
+function request1(): Promise<number> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1);
+    }, 4000)
+  });
+}
+
+function request2(): Promise<number> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(2);
+    }, 2000)
+  });
+}
+
+function request3(): Promise<number> {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(new Error("Failed"))
     }, 1000)
@@ -171,6 +211,7 @@ Promise.race([request1(), request2(), request3()]).then((num) =>{
 // Failed
 // 最初に解決するのは request3. ただし、reject なので catch 文で出力される。
 ```
+
 
 ## Promise の状態
 
