@@ -75,7 +75,7 @@ async function requestReject(): Promise<number> {
 
 ## Promise.all()
 
-すべての Promise が完了するのを待つという処理ができる。
+すべての Promise が完了するのを待つという処理ができる。一つでも reject されると例外になる。
 
 ```typescript
 async function hoge(): Promise<string> {
